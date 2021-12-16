@@ -4,6 +4,7 @@ import {FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import {theme} from '../constants/theme';
 import {SearchStackParam} from '../constants/types';
+import Icon from 'react-native-vector-icons/Feather';
 
 type NavigationParams = RouteProp<SearchStackParam, 'Artist'>;
 
@@ -28,12 +29,38 @@ const ArtistDetails = () => {
                 <Text size="lg" bold>
                   {data}
                 </Text>
-                <Text size="s" color="grey">
+                <Text size="sm" color="grey">
                   Singer
                 </Text>
-                <Text size="md" color="grey">
+                <Text size="sm" color="grey">
                   Dumka, Jharkhand
                 </Text>
+
+                <TouchableOpacity>
+                  <Box width={'100%'} py="xs" ml="xs" dir="row" align="center">
+                    <Icon
+                      name="facebook"
+                      size={14}
+                      color={theme.color.blueLight}
+                    />
+                    <Text size="xs" ml={3} color={theme.color.black}>
+                      facebook
+                    </Text>
+                  </Box>
+                </TouchableOpacity>
+
+                <TouchableOpacity>
+                  <Box width={'100%'} py="5" ml="xs" dir="row" align="center">
+                    <Icon
+                      name="instagram"
+                      size={14}
+                      color={theme.color.redLight}
+                    />
+                    <Text size="xs" ml={3} color={theme.color.black}>
+                      instagram
+                    </Text>
+                  </Box>
+                </TouchableOpacity>
               </Box>
             </Box>
             <Box px="sm" mb="md">

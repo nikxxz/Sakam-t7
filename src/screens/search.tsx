@@ -5,6 +5,7 @@ import {Box, Text} from 'react-native-design-utility';
 import EmptyScreen from '../components/EmptyScreen';
 import LoadingScreen from '../components/LoadingScreen';
 import {theme} from '../constants/theme';
+import Icon from 'react-native-vector-icons/Feather';
 
 const Search = () => {
   const [loading] = useState(false);
@@ -12,12 +13,23 @@ const Search = () => {
 
   return (
     <Box f={1} bg="white">
-      <Box h={50} w="100%" px="sm" mt="sm" mb="sm">
-        <TextInput
-          style={styles.input}
-          placeholder="Search Artist Or Songs"
-          selectionColor={theme.color.greenLighter}
-        />
+      <Box h={50} w="100%" px="sm" my="sm">
+        <Box
+          dir="row"
+          align="center"
+          h={40}
+          bg="greyLightest"
+          radius={10}
+          px="sm">
+          <Box mr={18}>
+            <Icon name="search" size={20} color={'grey'} />
+          </Box>
+          <TextInput
+            style={styles.input}
+            placeholder="Search Artist Or Songs"
+            selectionColor={theme.color.greenLighter}
+          />
+        </Box>
       </Box>
 
       <FlatList
@@ -53,11 +65,7 @@ const Search = () => {
 
 const styles = StyleSheet.create({
   input: {
-    height: 40,
     flex: 1,
-    backgroundColor: theme.color.greyLightest,
-    borderRadius: 10,
-    paddingHorizontal: theme.space.sm,
     fontSize: theme.text.size.sm,
   },
   listContent: {
