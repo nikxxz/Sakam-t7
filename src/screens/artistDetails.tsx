@@ -12,27 +12,27 @@ const ArtistDetails = () => {
   const {data} = useRoute<NavigationParams>().params ?? {};
 
   return (
-    <Box f={1} bg="white">
+    <Box f={1} bg="#191919">
       <FlatList
         ListHeaderComponent={
           <>
-            <Box dir="row" px="sm" mt="sm" mb="md">
+            <Box dir="row" px="sm" mt="sm" mb="md" style={{overflow: 'hidden'}}>
               <Box mr={18}>
                 <Image
                   source={{
-                    uri: 'https://mjdzbecikrpzwezvuibu.supabase.in/storage/v1/object/public/imagealbumart/hor_hor_te.webp',
+                    uri: data.artwork,
                   }}
                   style={styles.img}
                 />
               </Box>
               <Box f={1}>
-                <Text size="lg" bold>
-                  {data}
+                <Text size="lg" bold color="white">
+                  {data.title}
                 </Text>
-                <Text size="sm" color="grey">
-                  Singer
+                <Text size="sm" color="greyLighter">
+                  {data.artist}
                 </Text>
-                <Text size="sm" color="grey">
+                <Text size="sm" color="greyLighter">
                   Dumka, Jharkhand
                 </Text>
 
@@ -41,9 +41,9 @@ const ArtistDetails = () => {
                     <Icon
                       name="facebook"
                       size={14}
-                      color={theme.color.blueLight}
+                      color={theme.color.blueLighter}
                     />
-                    <Text size="xs" ml={3} color={theme.color.black}>
+                    <Text size="xs" ml={3} color={theme.color.greyLighter}>
                       facebook
                     </Text>
                   </Box>
@@ -56,7 +56,7 @@ const ArtistDetails = () => {
                       size={14}
                       color={theme.color.redLight}
                     />
-                    <Text size="xs" ml={3} color={theme.color.black}>
+                    <Text size="xs" ml={3} color={theme.color.greyLighter}>
                       instagram
                     </Text>
                   </Box>
@@ -64,8 +64,8 @@ const ArtistDetails = () => {
               </Box>
             </Box>
             <Box px="sm" mb="md">
-              <Text bold size="lg">
-                Songs By {data}
+              <Text bold size="lg" color="greyLighter">
+                Songs By {data.artist}
               </Text>
             </Box>
           </>
@@ -74,10 +74,12 @@ const ArtistDetails = () => {
         renderItem={() => (
           <TouchableOpacity>
             <Box px="sm" py="sm">
-              <Text size="xs" color="grey">
-                {data}
+              <Text size="xs" color="greyLighter">
+                {data.artist}
               </Text>
-              <Text bold>Hor Hor Te</Text>
+              <Text bold color="greenLighter">
+                {data.title}
+              </Text>
               <Text size="sm" color="grey" numberOfLines={1}>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos
                 quasi, quibusdam harum similique ipsum laudantium fugiat unde

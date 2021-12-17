@@ -1,6 +1,6 @@
 export type SearchStackParam = {
   Search: undefined;
   Artist: {
-    data: String;
+    data: Object;
   };
 };

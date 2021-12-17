@@ -7,6 +7,7 @@ import MainStackNavigator from './src/navigators/MainStackNavigator';
 import TrackPlayer from 'react-native-track-player';
 import Tracks from './src/constants/Tracks';
 import {ActivityIndicator} from 'react-native';
+import {PlayerContextProvider} from './src/contexts/PlayerContext';
 
 const App = () => {
   const [isReady, setIsReady] = React.useState<boolean>(false);
@@ -21,9 +22,11 @@ const App = () => {
   return (
     <UtilityThemeProvider theme={theme}>
       {isReady ? (
-        <NavigationContainer>
-          <MainStackNavigator />
-        </NavigationContainer>
+        <PlayerContextProvider>
+          <NavigationContainer>
+            <MainStackNavigator />
+          </NavigationContainer>
+        </PlayerContextProvider>
       ) : (
         <Box f={1} center>
           <ActivityIndicator />
