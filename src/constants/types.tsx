@@ -4,3 +4,10 @@ export type SearchStackParam = {
     data: Object;
   };
 };
+
+export type PlayerParam = {
+  MiniPlayer: undefined;
+  Player: {
+    data: Object;
+  };
+};

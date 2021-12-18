@@ -1,59 +1,60 @@
-import React, { useContext, useEffect } from 'react';
-import {
-  View,
-  Image,
-  Text,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  Keyboard,
-} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import styles from './styles';
-import { Album } from '../../types';
-import { Ionicons } from '@expo/vector-icons';
-import { AppContext } from '../../AppContext';
+import React from 'react';
+import {Image, TouchableOpacity, Keyboard, Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {Box, Text} from 'react-native-design-utility';
+import TrackPlayer, { State } from 'react-native-track-player';
+import {usePlayerContext} from '../../../contexts/PlayerContext';
+import {theme} from '../../../constants/theme';
 export type AlbumProps = {
-  songs:any
-}
-
-
-
+  songs: any;
+};
 
 const SearchModal11 = (props: any) => {
-  const {song , index}  = {...props}
-  const { setSong } = useContext(AppContext);
-
-  //console.log(props);
+  const {song, index} = {...props};
+  const playerContext = usePlayerContext();
+  const navigation = useNavigation();
   const onPlay = () => {
-    Keyboard.dismiss()
-    console.log('Current Song** \n',song)
-    setSong(song);
-    
-   // console.log(props.songs);
-  }
-  
-  // useEffect(() => {
-  //   //setListSong(songs);
-  //   //console.log("This song is \n")
-  //  // console.log(song)
-  // }, [])
-
+    Keyboard.dismiss();
+  };
 
   return (
-    <TouchableOpacity onPress={onPlay} >
-      <View style={styles.container}>
-           <Text style={styles.id}>{index}.</Text>
-          <Image source={{uri: song.imageUri}} style={styles.image}/>
-          <View style={styles.containerTitle}>
-          <Text style={styles.text}>{song.title}</Text>
-          <Text style={styles.artist}>{song.artist}</Text>
-          </View>
-          
-          <Ionicons style={styles.three_dot} name="ellipsis-vertical-outline" size={18} color="white" />
-      </View>
-    </TouchableOpacity>
-
-  )
-}
+    <Box h={90} dir="row" align="center" px="sm">
+      <TouchableOpacity
+        onPress={() => {
+          if (playerContext.isPlaying) {
+            TrackPlayer.skip(index - 1);
+          } else {
+            TrackPlayer.skip(index - 1);
+            TrackPlayer.play();
+          }
+          // onPlay();
+        }}>
+        <Box
+          h={70}
+          w={70}
+          bg="blueLight"
+          radius={10}
+          mr={10}
+          style={{overflow: 'hidden'}}>
+          <Image source={{uri: song.imageUri, height: '100%', width: '100%'}} />
+        </Box>
+      </TouchableOpacity>
+      <Box f={1}>
+        <Text bold color="white">
+          {song.title}
+        </Text>
+        <Text size="xs" color="greyLightest">
+          Album
+        </Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Artist', {data: song})}>
+          <Text size="xs" color={theme.color.greenLighter}>
+            {song.artist}
+          </Text>
+        </TouchableOpacity>
+      </Box>
+    </Box>
+  );
+};
 
 export default SearchModal11;

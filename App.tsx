@@ -4,22 +4,37 @@ import {Box, UtilityThemeProvider} from 'react-native-design-utility';
 import {theme} from './src/constants/theme';
 import {NavigationContainer} from '@react-navigation/native';
 import MainStackNavigator from './src/navigators/MainStackNavigator';
-import TrackPlayer, {usePlaybackState, State} from 'react-native-track-player';
+import TrackPlayer, {Capability} from 'react-native-track-player';
 import 'react-native-url-polyfill/auto';
-import Tracks from './src/constants/Tracks';
 import {ActivityIndicator} from 'react-native';
 import {PlayerContextProvider} from './src/contexts/PlayerContext';
 
 const App = () => {
   const [isReady, setIsReady] = React.useState<boolean>(false);
-  const playback = usePlaybackState();
 
   React.useEffect(() => {
     TrackPlayer.setupPlayer().then(() => {
-      console.log('Player Setup Succesful', playback);
       setIsReady(true);
     });
   }, []);
+
+  TrackPlayer.updateOptions({
+    stopWithApp: true,
+    capabilities: [
+      Capability.JumpBackward,
+      Capability.JumpForward,
+      Capability.Pause,
+      Capability.Play,
+      Capability.PlayFromId,
+      Capability.PlayFromSearch,
+      Capability.SeekTo,
+      Capability.Skip,
+      Capability.SkipToNext,
+      Capability.SkipToPrevious,
+      Capability.Stop,
+    ],
+    compactCapabilities: [Capability.Play, Capability.Pause, Capability.Stop],
+  });
 
   return (
     <UtilityThemeProvider theme={theme}>

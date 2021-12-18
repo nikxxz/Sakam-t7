@@ -9,6 +9,7 @@ interface PlayerContextType {
   isPaused: boolean;
   isStopped: boolean;
   isEmpty: boolean;
+  isReady: boolean;
   currentTrack: Track | null;
   play: (track?: Track) => void;
   pause: () => void;
@@ -19,6 +20,7 @@ export const PlayerContext = React.createContext<PlayerContextType>({
   isPaused: false,
   isStopped: false,
   isEmpty: true,
+  isReady: false,
   currentTrack: null,
   play: () => null,
   pause: () => null,
@@ -66,6 +68,7 @@ export const PlayerContextProvider: React.FC = props => {
     isPaused: playerState === TrackPlayerState.Paused,
     isStopped: playerState === TrackPlayerState.Stopped,
     isEmpty: playerState === null,
+    isReady: playerState === TrackPlayerState.Ready,
     currentTrack,
     pause,
     play,

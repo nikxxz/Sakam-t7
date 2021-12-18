@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   Image,
@@ -13,12 +13,49 @@ import LoadingScreen from '../components/LoadingScreen';
 import {theme} from '../constants/theme';
 import Icon from 'react-native-vector-icons/Feather';
 import {usePlayerContext} from '../contexts/PlayerContext';
-import Tracks from '../constants/Tracks';
+import TrackPlayer from 'react-native-track-player';
+import {supabase} from '../supabase/supabaseInit';
+import SearchModal1 from '../components/components/SearchModal1';
 
 const Search = () => {
   const playerContext = usePlayerContext();
   const [loading] = useState(false);
   const navigation = useNavigation();
+  const [text, setText] = useState('');
+  const [songs, setSongs] = useState(null);
+
+  const onChangeText = (t: any) => {
+    setText(t);
+  };
+
+  useEffect(() => {
+    //getSearchList()
+    getSearchList2();
+  }, [text]);
+
+  const getSearchList2 = async () => {
+    if (text !== '') {
+      let {data, error} = await supabase
+        .from('Songs1')
+        .select('*')
+        .ilike('artist', '%' + text + '%');
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        //console.log(data)
+        setSongs(data);
+        // setListSong(data);
+      }
+    }
+  };
+
+  useEffect(() => {}, []);
+
+  const artwork = async () => {
+    const art = await TrackPlayer.getTrack(0);
+  };
 
   return (
     <Box f={1} bg="#191919">
@@ -38,11 +75,14 @@ const Search = () => {
             placeholder="Search Artist Or Songs"
             placeholderTextColor={theme.color.greyLightest}
             selectionColor={theme.color.greenLighter}
+            onChangeText={onChangeText}
           />
         </Box>
       </Box>
 
-      <FlatList
+      <SearchModal1 songs={songs} />
+
+      {/* <FlatList
         keyboardShouldPersistTaps="never"
         contentContainerStyle={styles.listContent}
         ListEmptyComponent={<>{!loading && <EmptyScreen />}</>}
@@ -52,19 +92,11 @@ const Search = () => {
           <Box h={90} dir="row" align="center" px="sm">
             <TouchableOpacity
               onPress={() => {
-                // const el = Tracks?.Tracks[0];
-
-                // if (!el) {
-                //   return
-                // }
-
-                // playerContext.play({
-                //   title: el.title,
-                //   artwork: el.artwork,
-                //   id: el.url,
-                //   url: el.url,
-                //   artist: el.artist,
-                // });
+                if (playerContext.isPlaying || playerContext.isPaused) {
+                  TrackPlayer.reset();
+                }
+                TrackPlayer.add(Tracks);
+                TrackPlayer.play();
               }}>
               <Box
                 h={70}
@@ -76,7 +108,7 @@ const Search = () => {
                 <Image
                   source={{uri: Tracks.artwork, height: '100%', width: '100%'}}
                 />
-              </Box>
+      </Box>
             </TouchableOpacity>
             <Box f={1}>
               <Text bold color="white">
@@ -95,7 +127,7 @@ const Search = () => {
           </Box>
         )}
         keyExtractor={item => String(item.id)}
-      />
+      /> */}
     </Box>
   );
 };
