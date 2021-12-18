@@ -4,17 +4,19 @@ import {Box, UtilityThemeProvider} from 'react-native-design-utility';
 import {theme} from './src/constants/theme';
 import {NavigationContainer} from '@react-navigation/native';
 import MainStackNavigator from './src/navigators/MainStackNavigator';
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, {usePlaybackState, State} from 'react-native-track-player';
+import 'react-native-url-polyfill/auto';
 import Tracks from './src/constants/Tracks';
 import {ActivityIndicator} from 'react-native';
 import {PlayerContextProvider} from './src/contexts/PlayerContext';
 
 const App = () => {
   const [isReady, setIsReady] = React.useState<boolean>(false);
+  const playback = usePlaybackState();
 
   React.useEffect(() => {
     TrackPlayer.setupPlayer().then(() => {
-      console.log('Player Setup Succesful');
+      console.log('Player Setup Succesful', playback);
       setIsReady(true);
     });
   }, []);

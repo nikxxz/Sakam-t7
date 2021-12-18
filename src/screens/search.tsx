@@ -52,7 +52,19 @@ const Search = () => {
           <Box h={90} dir="row" align="center" px="sm">
             <TouchableOpacity
               onPress={() => {
-                playerContext.play();
+                // const el = Tracks?.Tracks[0];
+
+                // if (!el) {
+                //   return
+                // }
+
+                // playerContext.play({
+                //   title: el.title,
+                //   artwork: el.artwork,
+                //   id: el.url,
+                //   url: el.url,
+                //   artist: el.artist,
+                // });
               }}>
               <Box
                 h={70}
