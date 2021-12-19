@@ -1,20 +1,5 @@
-// import React from 'react';
-// import {Box, Text} from 'react-native-design-utility';
-
-// const Home = () => {
-//   return (
-//     <Box f={1} center bg="#191919">
-//       <Text color="greenLightest">Home Screen</Text>
-//     </Box>
-//   );
-// };
-
-// export default Home;
-
 import * as React from 'react';
-import {StyleSheet, FlatList, View, Text} from 'react-native';
-
-//import { API, graphqlOperation } from 'aws-amplify';
+import {StyleSheet, FlatList, View} from 'react-native';
 import {useEffect, useState} from 'react';
 
 import Home_3 from '../components/components/Home_3';
@@ -30,19 +15,16 @@ const Home = () => {
   useEffect(() => {
     fetchAlbumCategories();
     setLoading(false);
-    //setCategories([])
   }, []);
 
   const fetchAlbumCategories = async () => {
     try {
-      console.log('fetch');
       let {data, error} = await supabase
         .from('HomeDashboard1')
         .select('homepage');
 
       if (data) {
         let rdm = Math.floor(Math.random() * data.length);
-        console.log(data[rdm].homepage);
         setCategories(data[rdm].homepage);
         setLoading(false);
         setRefresh(false);
@@ -71,7 +53,7 @@ const Home = () => {
           data={categories}
           renderItem={({item}) => {
             if (item.type === 'Home_3') {
-              return <Home_3 title={item.title} songs={item.songs} />;
+              return <Home_3 title={item.title} songs={item} />;
             }
             if (item.type === 'Home_2') {
               return <Home_2 title={item.title} albums={item.albums} />;
@@ -99,7 +81,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#191919',
   },
   container2: {
-    //marginTop: 20,
     backgroundColor: 'red',
   },
   title: {

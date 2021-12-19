@@ -9,7 +9,5 @@ export default async function trackPlayerServices() {
 
   TrackPlayer.addEventListener('playback-track-changed', () => {});
 
-  TrackPlayer.addEventListener('playback-state', state =>
-    console.log('playback-state', state),
-  );
+  TrackPlayer.addEventListener('playback-state', state => {});
 }
