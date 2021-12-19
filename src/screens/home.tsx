@@ -20,12 +20,14 @@ const Home = () => {
   const fetchAlbumCategories = async () => {
     try {
       let {data, error} = await supabase
-        .from('HomeDashboard1')
-        .select('homepage');
+        .from('HomePage')
+        .select('*');
 
       if (data) {
-        let rdm = Math.floor(Math.random() * data.length);
-        setCategories(data[rdm].homepage);
+        console.log(data)
+        //let rdm = Math.floor(Math.random() * data.length);
+       // console.log(data[rdm].homepage);
+        setCategories(data);
         setLoading(false);
         setRefresh(false);
       } else {
@@ -56,12 +58,12 @@ const Home = () => {
               return <Home_3 title={item.title} songs={item} />;
             }
             if (item.type === 'Home_2') {
-              return <Home_2 title={item.title} albums={item.albums} />;
+              return <Home_2 title={item.title} albums={item.playlist} />;
             }
             if (item.type === 'Home_1') {
-              return <Home_1 title={item.title} albums={item.albums} />;
+              return <Home_1 title={item.title} albums={item.playlist} />;
             } else {
-              return <Home_1 title={item.title} albums={item.albums} />;
+              return <Home_1 title={item.title} albums={item.playlist} />;
             }
           }}
           keyExtractor={item => item.id}
