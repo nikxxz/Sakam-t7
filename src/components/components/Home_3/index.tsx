@@ -1,67 +1,51 @@
-import * as React from "react";
-import { FlatList, Text, View } from "react-native";
+import React from 'react';
+import {Text, Dimensions} from 'react-native';
+import {Box} from 'react-native-design-utility';
 
-import Carousel from "react-native-snap-carousel";
-import Home_31 from "../Home_31";
-import styles from "./styles";
+import Carousel from 'react-native-snap-carousel';
+import Home_31 from '../Home_31';
+import styles from './styles';
 
-export default class SB2 extends React.Component {
-  constructor(props:any) {
-    super(props);
-    this.state = {
-      activeIndex: 0,
-      index_cnt:0
-    };
-  }
+const {height, width} = Dimensions.get('window');
 
-  _renderItem({ item, i }) {
-    //console.log('i',i);
-    
+export default SB2 = props => {
+  const _renderItem = ({item, i}) => {
     return (
-      <View
-        style={{
-          borderRadius: 5,
-          marginLeft: -20,
-        }}
-      >
-
-<FlatList
-      data={item.songs}
-      renderItem={({ item , index }) => <Home_31  song={item} listsong />}
-      keyExtractor={( item ) => item.id}
-      showsHorizontalScrollIndicator={false}
-      
-      
-    />
+      <Box width="100%">
+        {/* <FlatList
+          data={item}
+          renderItem={({item, index}) => <Home_31 song={item} />}
+          keyExtractor={item => item.id}
+          showsHorizontalScrollIndicator={false}
+        /> */}
         {/* <Home_31 songs={item.songs[0]} />
         <Home_31 songs={item.songs[1]} />
         <Home_31 songs={item.songs[2]} />
         <Home_31 songs={item.songs[3]} /> */}
-      </View>
+        <Home_31 songs={item} />
+      </Box>
     );
-  }
+  };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.container2}>
-          <Text style={styles.title}>{this.props.title}</Text>
-          {/* <Text style={styles.see_all}>Show more</Text> */}
-        </View>
-      <View style={styles.container3}>
+  return (
+    <Box mt="md" mb="sm">
+      <Box>
+        {/* <Text style={styles.title}>{props.title}</Text> */}
+        {/* <Text style={styles.see_all}>Show more</Text> */}
+      </Box>
+      <Box align="center" justify="center" f={1} ml={3}>
         <Carousel
-          loop={false}
-          autoplay={false}
-          ref={(ref) => (this.carousel = ref)}
-          data={this.props.songs}
-          sliderWidth={370}
-          itemWidth={300}
-          itemHeight={300}
-          renderItem={this._renderItem}          
-          onSnapToItem={(index) => this.setState({ activeIndex: index })}
+          activeSlideAlignment={'center'}
+          loop={true}
+          autoplay={true}
+          data={props.songs.songs}
+          sliderWidth={width}
+          itemWidth={width * 0.95}
+          itemHeight={height}
+          renderItem={_renderItem}
+          autoplayInterval={5000}
         />
-        </View>
-      </View>
-    );
-  }
-}
+      </Box>
+    </Box>
+  );
+};
