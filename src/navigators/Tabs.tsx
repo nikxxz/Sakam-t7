@@ -4,6 +4,7 @@ import {
 } from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
+import AlbumScreen from '../screens/AlbumScreen';
 import MiniPlayer from '../components/MiniPlayer';
 import {theme} from '../constants/theme';
 import ArtistDetails from '../screens/artistDetails';
@@ -19,6 +20,7 @@ const NowPlayingStackNavigator = () => {
   return (
     <HomeStack.Navigator screenOptions={{headerShown: false}}>
       <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="AlbumScreen" component={AlbumScreen}/>
     </HomeStack.Navigator>
   );
 };

@@ -8,9 +8,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
-import { Album } from '../../types';
-import { Ionicons } from '@expo/vector-icons';
-import { AppContext } from '../../AppContext';
+
 export type AlbumProps = {
   song:any
 }
@@ -82,14 +80,14 @@ const songlist_1 = [ {
   imageUri:'https://mjdzbecikrpzwezvuibu.supabase.in/storage/v1/object/public/imagealbumart/hor_hor_te.webp',
   artist:'Tom Murmu'
 },]
-const Album_11 = (props: AlbumProps) => {
+const Album_11 = (props: any) => {
   const navigation = useNavigation();  
-  const { setSong  } = useContext(AppContext);
+  // const { setSong  } = useContext(AppContext);
 
  // console.log(props);
   const onPlay = () => {
    // console.log('Album Song',props.songs)
-    setSong(props.song);
+    // setSong(props.song);
     
    // console.log(props.songs);
   }
@@ -109,7 +107,7 @@ const Album_11 = (props: AlbumProps) => {
           <Text style={styles.artist}>{props.song.artist}</Text>
           </View>
           
-          <Ionicons style={styles.three_dot} name="ellipsis-vertical-outline" size={18} color="white" />
+          {/* <Ionicons style={styles.three_dot} name="ellipsis-vertical-outline" size={18} color="white" /> */}
       </View>
     </TouchableOpacity>
 

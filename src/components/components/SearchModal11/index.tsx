@@ -10,7 +10,7 @@ export type AlbumProps = {
 };
 
 const SearchModal11 = (props: any) => {
-  const {song, index} = {...props};
+  const {song, index , tracks} = {...props};
   const playerContext = usePlayerContext();
   const navigation = useNavigation();
   const onPlay = () => {
@@ -20,12 +20,15 @@ const SearchModal11 = (props: any) => {
   return (
     <Box h={90} dir="row" align="center" px="sm">
       <TouchableOpacity
-        onPress={() => {
+        onPress={async () => {
+          //await TrackPlayer.reset()
+          //console.log(tracks)
+          //await TrackPlayer.add(tracks)
           if (playerContext.isPlaying) {
-            TrackPlayer.skip(index - 1);
+            await TrackPlayer.skip(index - 1);
           } else {
-            TrackPlayer.skip(index - 1);
-            TrackPlayer.play();
+            await TrackPlayer.skip(index - 1);
+            await TrackPlayer.play();
           }
           // onPlay();
         }}>
@@ -36,7 +39,7 @@ const SearchModal11 = (props: any) => {
           radius={10}
           mr={10}
           style={{overflow: 'hidden'}}>
-          <Image source={{uri: song.imageUri, height: '100%', width: '100%'}} />
+          <Image source={{uri: song.artwork, height: '100%', width: '100%'}} />
         </Box>
       </TouchableOpacity>
       <Box f={1}>
