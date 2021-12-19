@@ -7,9 +7,12 @@ import React from 'react';
 import MiniPlayer from '../components/MiniPlayer';
 import {theme} from '../constants/theme';
 import ArtistDetails from '../screens/artistDetails';
+import EditProfile from '../screens/EditProfile';
+import Help from '../screens/Help';
 import Home from '../screens/home';
-import Library from '../screens/library';
+import Profile from '../screens/profile';
 import Search from '../screens/search';
+import Library from '../screens/library';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +31,10 @@ const LibraryStack = createStackNavigator();
 const LibraryStackNavigator = () => {
   return (
     <LibraryStack.Navigator screenOptions={{headerShown: false}}>
-      <LibraryStack.Screen name="Library" component={Library} />
+      <LibraryStack.Screen name="ProfileScreen" component={Profile} />
+      <LibraryStack.Screen name="EditProfile" component={EditProfile} />
+      <LibraryStack.Screen name="Library" component={Libra} />
+      <LibraryStack.Screen name="Help" component={Help} />
     </LibraryStack.Navigator>
   );
 };
@@ -86,7 +92,7 @@ const Tabs = () => {
       />
       <Tab.Screen
         options={{
-          title: 'Library',
+          title: 'Profile',
         }}
         name="LibraryStack"
         component={LibraryStackNavigator}
