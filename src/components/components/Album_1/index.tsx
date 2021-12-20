@@ -4,7 +4,7 @@ import {View, FlatList} from 'react-native';
 import styles from './styles';
 import Album_12 from '../Album_12';
 import Album_11 from '../Album_11';
-import { Box } from 'react-native-design-utility';
+import {Box} from 'react-native-design-utility';
 import TrackPlayer from 'react-native-track-player';
 
 export type AlbumCategoryProps = {
@@ -14,20 +14,16 @@ export type AlbumCategoryProps = {
 };
 
 const Album_1 = (props: AlbumCategoryProps) => {
-  console.log('Album1');
-
   //const { setListSong } = useContext(AppContext);
   useEffect(() => {
     //setListSong(props.album.songs)
-    const t = async ()=>{
-
+    const t = async () => {
       //await TrackPlayer.reset()
-      await TrackPlayer.add(props.album.songs,0);
-    }
+      await TrackPlayer.add(props.album.songs, 0);
+    };
 
     t();
-    
-  }, [props.album.song]);
+  }, []);
 
   return (
     <Box backgroundColor="#191919" pt={10}>

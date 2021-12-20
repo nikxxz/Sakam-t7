@@ -25,6 +25,7 @@ const NowPlayingStackNavigator = () => {
     <HomeStack.Navigator screenOptions={{headerShown: false}}>
       <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="AlbumScreen" component={AlbumScreen} />
+      <HomeStack.Screen name="ArtistScreen" component={ArtistDetails} />
     </HomeStack.Navigator>
   );
 };
@@ -51,6 +52,11 @@ const SearchStackNavigator = () => {
       <SearchStack.Screen
         name="Artist"
         component={ArtistDetails}
+        options={{headerTitle: ''}}
+      />
+      <SearchStack.Screen
+        name="Album"
+        component={AlbumScreen}
         options={{headerTitle: ''}}
       />
     </SearchStack.Navigator>

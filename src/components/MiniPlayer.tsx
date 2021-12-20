@@ -22,6 +22,8 @@ const MiniPlayer = () => {
     artwork();
   }
 
+  useEffect(() => {}, [playerContext]);
+
   if (playerContext.isPlaying || playerContext.isPaused) {
     return (
       <TouchableOpacity

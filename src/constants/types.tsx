@@ -11,3 +11,10 @@ export type PlayerParam = {
     data: Object;
   };
 };
+
+export type AlbumParam = {
+  AlbumScreen: any;
+  Artist: {
+    data: object;
+  };
+};

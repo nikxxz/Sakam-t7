@@ -3,7 +3,7 @@ import {View, Image, TouchableOpacity} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import TrackPlayer from 'react-native-track-player';
 import {theme} from '../../../constants/theme';
-import { usePlayerContext } from '../../../contexts/PlayerContext';
+import {usePlayerContext} from '../../../contexts/PlayerContext';
 
 import styles from './styles';
 
@@ -17,20 +17,18 @@ const AlbumHeader = (props: AlbumHeaderProps) => {
   //console.log(props);
   const playerContext = usePlayerContext();
 
-  const onPlay = async() => {
-    console.log('PLAY SONGS CLICKED')
-    if(playerContext.isPlaying){
-      await TrackPlayer.skip(0)
-      
-    }else{
-      await TrackPlayer.skip(0)
-      await TrackPlayer.play()
+  const onPlay = async () => {
+    // console.log('PLAY SONGS CLICKED');
+    if (playerContext.isPlaying) {
+      await TrackPlayer.skip(0);
+    } else {
+      await TrackPlayer.skip(0);
+      await TrackPlayer.play();
     }
-    
   };
 
   return (
-    <Box f={1} backgroundColor="#191919" pt={10} paddingHorizontal={10}>
+    <Box f={1} backgroundColor="#191919" pt={20} paddingHorizontal={12} mb={30}>
       <View style={styles.creatorContainer}>
         <View style={styles.containerTitle}>
           <Text style={styles.title}>{album.title}</Text>
@@ -54,7 +52,9 @@ const AlbumHeader = (props: AlbumHeaderProps) => {
             px="sm"
             width={120}
             alignItems="center">
-            <Text color="white" bold>Play</Text>
+            <Text color="white" bold style={{textTransform: 'uppercase'}} size={15}>
+              Play
+            </Text>
           </Box>
         </TouchableOpacity>
         <TouchableOpacity onPress={onPlay}>
@@ -65,7 +65,9 @@ const AlbumHeader = (props: AlbumHeaderProps) => {
             px="sm"
             width={120}
             alignItems="center">
-            <Text color="white" bold>Shuffle</Text>
+            <Text color="white" bold style={{textTransform: 'uppercase'}} size={15}>
+              Shuffle
+            </Text>
           </Box>
         </TouchableOpacity>
       </Box>

@@ -1,10 +1,10 @@
-import { StyleSheet} from "react-native";
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     //alignItems: "center",
     padding: 10,
-    flexDirection:'column',
+    flexDirection: 'column',
     //backgroundColor:'yellow'
   },
   image: {
@@ -15,29 +15,29 @@ const styles = StyleSheet.create({
   title: {
     color: 'white',
     fontSize: 24,
-    fontWeight: 'bold',    
-
+    fontWeight: 'bold',
   },
-  subtitle:{
-    color:'white',
-    fontSize:18
+  subtitle: {
+    color: 'white',
+    fontSize: 18,
   },
   creatorContainer: {
-    flexDirection: "row",
-    justifyContent:'space-between',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     //backgroundColor:'grey'
-    marginHorizontal: 10
+    marginHorizontal: 10,
+    marginBottom: 5,
   },
-  containerTitle:{
+  containerTitle: {
     //width:"100%"
     //backgroundColor:'green'
   },
-  containerButtons:{
-    flexDirection:'row',
+  containerButtons: {
+    flexDirection: 'row',
     //backgroundColor:'red',
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
     //marginHorizontal:5
-    marginVertical:10
+    marginVertical: 10,
   },
   creator: {
     color: 'lightgray',
@@ -52,20 +52,20 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: 'grey',
     height: 40,
-    marginHorizontal:5,
+    marginHorizontal: 5,
     width: 160,
     borderRadius: 10,
-    borderColor:'white',
+    borderColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection:'row'
+    flexDirection: 'row',
   },
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
-    marginLeft:5
-  }
+    marginLeft: 5,
+  },
 });
 
 export default styles;

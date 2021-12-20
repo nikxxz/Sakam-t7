@@ -125,7 +125,7 @@ const AlbumScreen = () => {
         console.log(error);
       }
       if (data) {
-        console.log(data);
+        // console.log(data);
         setAlbum(data[0]);
       }
     };
