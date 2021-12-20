@@ -32,30 +32,38 @@ const SearchModal11 = (props: any) => {
           }
           // onPlay();
         }}>
-        <Box
-          h={70}
-          w={70}
-          bg="blueLight"
-          radius={10}
-          mr={10}
-          style={{overflow: 'hidden'}}>
-          <Image source={{uri: song.artwork, height: '100%', width: '100%'}} />
+        <Box dir="row">
+          <Box f={1} height={100}>
+            <Box
+              h={70}
+              w={70}
+              bg="blueLight"
+              radius={10}
+              mr={10}
+              style={{overflow: 'hidden'}}>
+              <Image
+                source={{uri: song.artwork, height: '100%', width: '100%'}}
+              />
+            </Box>
+          </Box>
+          <Box f={3} height={100}>
+            <Box f={1} width={200} ml={85}>
+              <Text bold color="white">
+                {song.title}
+              </Text>
+              <Text size="xs" color="greyLightest">
+                Album
+              </Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Artist', {data: song})}>
+                <Text size="xs" color={theme.color.greenLighter}>
+                  {song.artist}
+                </Text>
+              </TouchableOpacity>
+            </Box>
+          </Box>
         </Box>
       </TouchableOpacity>
-      <Box f={1}>
-        <Text bold color="white">
-          {song.title}
-        </Text>
-        <Text size="xs" color="greyLightest">
-          Album
-        </Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Artist', {data: song})}>
-          <Text size="xs" color={theme.color.greenLighter}>
-            {song.artist}
-          </Text>
-        </TouchableOpacity>
-      </Box>
     </Box>
   );
 };

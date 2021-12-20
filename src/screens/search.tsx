@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   Image,
@@ -7,14 +7,14 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import { Box, Text } from 'react-native-design-utility';
+import {Box, Text} from 'react-native-design-utility';
 import EmptyScreen from '../components/EmptyScreen';
 import LoadingScreen from '../components/LoadingScreen';
-import { theme } from '../constants/theme';
+import {theme} from '../constants/theme';
 import Icon from 'react-native-vector-icons/Feather';
-import { usePlayerContext } from '../contexts/PlayerContext';
+import {usePlayerContext} from '../contexts/PlayerContext';
 import TrackPlayer from 'react-native-track-player';
-import { supabase } from '../supabase/supabaseInit';
+import {supabase} from '../supabase/supabaseInit';
 import SearchModal1 from '../components/components/SearchModal1';
 
 const Search = () => {
@@ -34,10 +34,11 @@ const Search = () => {
 
   const getSearchList2 = async () => {
     if (text !== '') {
-      const { data, error } = await supabase
-        .rpc('search_main', { p_pattern: text })
+      const {data, error} = await supabase.rpc('search_main', {
+        p_pattern: text,
+      });
 
-      console.log('search data ', data)
+      console.log('search data ', data);
 
       if (error) {
         console.log(error);
@@ -49,9 +50,9 @@ const Search = () => {
   };
 
   useEffect(() => {
-   //TrackPlayer.reset()
+    //TrackPlayer.reset()
     //TrackPlayer.add(songs);
-   }, [songs]);
+  }, [songs]);
 
   const artwork = async () => {
     const art = await TrackPlayer.getTrack(0);
@@ -81,8 +82,6 @@ const Search = () => {
       </Box>
 
       <SearchModal1 songs={songs} />
-
-    
     </Box>
   );
 };
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: theme.text.size.sm,
-    color: 'white'
+    color: 'white',
   },
   listContent: {
     paddingBottom: 90,

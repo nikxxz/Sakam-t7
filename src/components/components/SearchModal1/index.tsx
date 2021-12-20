@@ -6,7 +6,7 @@ import SearchModal11 from '../SearchModal11';
 
 const SearchModal1 = (props: any) => {
   const {songs} = {...props};
-  const [ptracks , setptracks] = useState([])
+  const [ptracks, setptracks] = useState([]);
 
   if (songs == null) {
     return null;
@@ -14,18 +14,18 @@ const SearchModal1 = (props: any) => {
     //TrackPlayer.add(songs);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     //TrackPlayer.remove(ptracks)
-    TrackPlayer.add(songs,0);
+    TrackPlayer.add(songs, 0);
     //setptracks(songs)
-  },[songs])
+  }, [songs]);
   return (
     <View style={{marginBottom: 30}}>
       <FlatList
         keyboardShouldPersistTaps="handled"
         data={songs}
         renderItem={({item, index}) => {
-          return <SearchModal11 index={index + 1} song={item} tracks={songs}/>;
+          return <SearchModal11 index={index + 1} song={item} tracks={songs} />;
         }}
         keyExtractor={item => item.id}
         alwaysBounceHorizontal={false}
