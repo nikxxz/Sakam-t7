@@ -21,17 +21,19 @@ const Home = () => {
     try {
       let {data, error} = await supabase
         .from('HomePage')
-        .select('*');
+        .select('*')
+        .order('index', {ascending: true});
+        console.log(data)
 
       if (data) {
-        console.log(data)
+        // console.log(data);
         //let rdm = Math.floor(Math.random() * data.length);
-       // console.log(data[rdm].homepage);
+        // console.log(data[rdm].homepage);
         setCategories(data);
         setLoading(false);
         setRefresh(false);
       } else {
-        setCategories(home_data);
+        setCategories([]);
       }
       if (error) {
         console.log(error);
@@ -55,14 +57,12 @@ const Home = () => {
           data={categories}
           renderItem={({item}) => {
             if (item.type === 'Home_3') {
-              return <Home_3 title={item.title} songs={item} />;
+              return <Home_3 title={item.title} songs={item.playlist} />;
             }
             if (item.type === 'Home_2') {
               return <Home_2 title={item.title} albums={item.playlist} />;
             }
             if (item.type === 'Home_1') {
-              return <Home_1 title={item.title} albums={item.playlist} />;
-            } else {
               return <Home_1 title={item.title} albums={item.playlist} />;
             }
           }}

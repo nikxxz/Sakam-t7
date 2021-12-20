@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, TouchableOpacity, Keyboard, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Box, Text} from 'react-native-design-utility';
-import TrackPlayer, { State } from 'react-native-track-player';
+import TrackPlayer, {State} from 'react-native-track-player';
 import {usePlayerContext} from '../../../contexts/PlayerContext';
 import {theme} from '../../../constants/theme';
 export type AlbumProps = {
@@ -10,7 +10,7 @@ export type AlbumProps = {
 };
 
 const SearchModal11 = (props: any) => {
-  const {song, index , tracks} = {...props};
+  const {song, index, tracks} = {...props};
   const playerContext = usePlayerContext();
   const navigation = useNavigation();
   const onPlay = () => {

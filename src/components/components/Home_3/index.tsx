@@ -38,7 +38,7 @@ export default SB2 = props => {
           activeSlideAlignment={'center'}
           loop={true}
           autoplay={true}
-          data={props.songs.songs}
+          data={props.songs}
           sliderWidth={width}
           itemWidth={width * 0.95}
           itemHeight={height}

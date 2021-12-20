@@ -1,38 +1,33 @@
+import React from 'react';
+import {View, Image, TouchableOpacity} from 'react-native';
+import {Box, Text} from 'react-native-design-utility';
+import {theme} from '../../../constants/theme';
 
-import React, { useContext } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
-
-import styles from "./styles";
+import styles from './styles';
 
 export type AlbumHeaderProps = {
   album: any;
 };
 
 const AlbumHeader = (props: AlbumHeaderProps) => {
-  const { album } = props;
+  const {album} = props;
   const isPlaying = false;
   //console.log(props);
 
-
   const onPlay = () => {
     // console.log('Album Song',props.songs)
-     //setSong(props.album.songs[0]);
-     
+    //setSong(props.album.songs[0]);
     // console.log(props.songs);
-   }
-
+  };
 
   return (
-    <View style={styles.container}>
+    <Box f={1} backgroundColor="#191919">
       <View style={styles.creatorContainer}>
-        {/* <Text style={styles.creator}>By {album.by}</Text> */}
-        {/* <Text style={styles.likes}>{album.numberOfLikes} Likes</Text> */}
         <View style={styles.containerTitle}>
           <Text style={styles.title}>{album.title}</Text>
           <Text style={styles.subtitle}>{album.by}</Text>
         </View>
 
-        
         <Image
           source={{
             uri: album.imageUri,
@@ -41,21 +36,31 @@ const AlbumHeader = (props: AlbumHeaderProps) => {
         />
       </View>
 
-      <View style={styles.containerButtons}>
+      <Box f={1} dir="row" justify="evenly" py="md" px="xs">
         <TouchableOpacity onPress={onPlay}>
-          <View style={styles.button}>
-          
-            <Text style={styles.buttonText}>Play</Text>
-          </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onPlay}>
-          <View style={styles.button}>
-          
-            <Text style={styles.buttonText}>Shuffle</Text>
-          </View>
+          <Box
+            backgroundColor={theme.color.greenLighter}
+            radius={10}
+            py="xs"
+            px="sm"
+            width={120}
+            alignItems="center">
+            <Text color="white" bold>Play</Text>
+          </Box>
         </TouchableOpacity>
-      </View>
-    </View>
+        <TouchableOpacity onPress={onPlay}>
+          <Box
+            backgroundColor={theme.color.greenLighter}
+            radius={10}
+            py="xs"
+            px="sm"
+            width={120}
+            alignItems="center">
+            <Text color="white" bold>Shuffle</Text>
+          </Box>
+        </TouchableOpacity>
+      </Box>
+    </Box>
   );
 };
 

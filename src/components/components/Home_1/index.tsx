@@ -10,7 +10,7 @@ export type AlbumCategoryProps = {
 };
 
 const Home_1 = (props: AlbumCategoryProps) => {
-  //console.log(props);
+  console.log(props);
 
   return (
     <View style={styles.container}>
