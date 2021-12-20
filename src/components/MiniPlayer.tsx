@@ -29,7 +29,7 @@ const MiniPlayer = () => {
           navigation.navigate('Player', {data: artwor});
         }}
         activeOpacity={1}>
-        <Box h={75} bg="#191919" px="sm">
+        <Box h={75} bg="#000000" px="sm">
           <Box f={1} dir="row" align="center" justify="between">
             <Box
               h={50}
