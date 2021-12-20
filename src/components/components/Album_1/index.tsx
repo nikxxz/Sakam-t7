@@ -1,40 +1,47 @@
-import React, { useEffect } from 'react';
-import { View, FlatList } from 'react-native';
+import React, {useEffect} from 'react';
+import {View, FlatList} from 'react-native';
 
 import styles from './styles';
 import Album_12 from '../Album_12';
 import Album_11 from '../Album_11';
-
+import { Box } from 'react-native-design-utility';
+import TrackPlayer from 'react-native-track-player';
 
 export type AlbumCategoryProps = {
-  title: string,
-  albums: any,
-  albumart: string
-}
-
-
+  title: string;
+  album: any;
+  albumart: string;
+};
 
 const Album_1 = (props: AlbumCategoryProps) => {
-  //console.log(props);
+  console.log('Album1');
 
   //const { setListSong } = useContext(AppContext);
   useEffect(() => {
     //setListSong(props.album.songs)
-  }, [])
+    const t = async ()=>{
+
+      //await TrackPlayer.reset()
+      await TrackPlayer.add(props.album.songs,0);
+    }
+
+    t();
+    
+  }, [props.album.song]);
 
   return (
-    <View style={styles.container}>
-      {/* <Text style={styles.title}>{props.title}</Text> */}
+    <Box backgroundColor="#191919" pt={10}>
       <FlatList
         data={props.album.songs}
-        renderItem={({ item, index }) => <Album_11 index={index + 1} song={item} />}
-        keyExtractor={(item) => item.id}
+        renderItem={({item, index}) => (
+          <Album_11 index={index + 1} song={item} />
+        )}
+        keyExtractor={item => item.id}
         showsHorizontalScrollIndicator={false}
         ListHeaderComponent={() => <Album_12 album={props.album} />}
-
       />
-    </View>
-  )
-}
+    </Box>
+  );
+};
 
 export default Album_1;

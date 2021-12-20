@@ -8,9 +8,13 @@ import AlbumScreen from '../screens/AlbumScreen';
 import MiniPlayer from '../components/MiniPlayer';
 import {theme} from '../constants/theme';
 import ArtistDetails from '../screens/artistDetails';
+import EditProfile from '../screens/EditProfile';
+import Help from '../screens/Help';
 import Home from '../screens/home';
-import Library from '../screens/library';
+import Profile from '../screens/profile';
 import Search from '../screens/search';
+import Library from '../screens/library';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +24,7 @@ const NowPlayingStackNavigator = () => {
   return (
     <HomeStack.Navigator screenOptions={{headerShown: false}}>
       <HomeStack.Screen name="Home" component={Home} />
-      <HomeStack.Screen name="AlbumScreen" component={AlbumScreen}/>
+      <HomeStack.Screen name="AlbumScreen" component={AlbumScreen} />
     </HomeStack.Navigator>
   );
 };
@@ -30,7 +34,10 @@ const LibraryStack = createStackNavigator();
 const LibraryStackNavigator = () => {
   return (
     <LibraryStack.Navigator screenOptions={{headerShown: false}}>
+      <LibraryStack.Screen name="ProfileScreen" component={Profile} />
+      <LibraryStack.Screen name="EditProfile" component={EditProfile} />
       <LibraryStack.Screen name="Library" component={Library} />
+      <LibraryStack.Screen name="Help" component={Help} />
     </LibraryStack.Navigator>
   );
 };
@@ -61,34 +68,56 @@ const Tabs = () => {
       )}
       screenOptions={{
         headerShown: false,
-        tabBarLabelPosition: 'beside-icon',
+        tabBarLabelPosition: 'below-icon',
         tabBarLabelStyle: {
           fontWeight: '700',
           textTransform: 'uppercase',
           fontSize: 10,
         },
-        tabBarIconStyle: {display: 'none'},
+        //tabBarIconStyle: {display: 'none'},
         tabBarActiveTintColor: theme.color.greenLighter,
         tabBarInactiveTintColor: theme.color.greyDark,
-        tabBarStyle: {backgroundColor: 'black'},
+        tabBarStyle: {
+          backgroundColor: 'black',
+          borderTopWidth: 0,
+          paddingTop: 10,
+        },
       }}>
       <Tab.Screen
-        options={{
-          title: 'Now Playing',
-        }}
         name="NowPlaying"
         component={NowPlayingStackNavigator}
+        options={{
+          title: '',
+          tabBarLabel: '',
+          headerStyle: {backgroundColor: 'black'},
+          headerShown: false,
+          tabBarIcon: ({color}) => {
+            return <Icon name="home" size={24} color={color} />;
+          },
+        }}
       />
       <Tab.Screen
         options={{
-          title: 'Search',
+          title: '',
+          tabBarLabel: '',
+          headerStyle: {backgroundColor: 'black'},
+          headerShown: false,
+          tabBarIcon: ({color}) => {
+            return <Icon name="search" size={24} color={color} />;
+          },
         }}
         name="SearchStack"
         component={SearchStackNavigator}
       />
       <Tab.Screen
         options={{
-          title: 'Library',
+          title: '',
+          tabBarLabel: '',
+          headerStyle: {backgroundColor: 'black'},
+          headerShown: false,
+          tabBarIcon: ({color}) => {
+            return <Icon name="person-outline" size={24} color={color} />;
+          },
         }}
         name="LibraryStack"
         component={LibraryStackNavigator}

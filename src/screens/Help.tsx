@@ -1,14 +1,14 @@
 import React from 'react';
 import {Box, Text} from 'react-native-design-utility';
 
-const Profile = () => {
+const Help = () => {
   return (
-    <Box>
+    <Box f={1} backgroundColor="#191919">
       <Text color="White" center>
-        Profile Page
+        Help Page
       </Text>
     </Box>
   );
 };
 
-export default Profile;
+export default Help;

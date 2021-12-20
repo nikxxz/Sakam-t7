@@ -9,6 +9,7 @@ const S_ActivityIndicator = () => {
         height: "100%",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor:'black'
       }}
     >
       <ActivityIndicator size="large" color="white" />

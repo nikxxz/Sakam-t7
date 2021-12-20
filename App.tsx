@@ -6,7 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import MainStackNavigator from './src/navigators/MainStackNavigator';
 import TrackPlayer, {Capability} from 'react-native-track-player';
 import 'react-native-url-polyfill/auto';
-import {ActivityIndicator} from 'react-native';
+import {ActivityIndicator, StatusBar} from 'react-native';
 import {PlayerContextProvider} from './src/contexts/PlayerContext';
 
 const App = () => {
@@ -20,20 +20,29 @@ const App = () => {
 
   TrackPlayer.updateOptions({
     stopWithApp: true,
+    alwaysPauseOnInterruption: true,
     capabilities: [
-      Capability.JumpBackward,
-      Capability.JumpForward,
       Capability.Pause,
       Capability.Play,
-      Capability.PlayFromId,
-      Capability.PlayFromSearch,
       Capability.SeekTo,
-      Capability.Skip,
       Capability.SkipToNext,
       Capability.SkipToPrevious,
       Capability.Stop,
     ],
-    compactCapabilities: [Capability.Play, Capability.Pause, Capability.Stop],
+    compactCapabilities: [
+      Capability.Play,
+      Capability.Pause,
+      Capability.Stop,
+      Capability.SkipToNext,
+      Capability.SkipToPrevious,
+    ],
+    notificationCapabilities: [
+      Capability.Play,
+      Capability.Pause,
+      Capability.Stop,
+      Capability.SkipToNext,
+      Capability.SkipToPrevious,
+    ],
   });
 
   return (
@@ -43,6 +52,7 @@ const App = () => {
           <NavigationContainer>
             <MainStackNavigator />
           </NavigationContainer>
+          <StatusBar barStyle={'light-content'} backgroundColor={'#191919'} />
         </PlayerContextProvider>
       ) : (
         <Box f={1} center>

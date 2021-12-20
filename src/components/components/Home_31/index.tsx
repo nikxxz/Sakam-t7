@@ -13,11 +13,8 @@ const Home_31 = (props: any) => {
     <TouchableOpacity onPress={() => {}} activeOpacity={1}>
       <Box style={{overflow: 'hidden'}} height={230} radius={10} mx={1}>
         <Image
-          source={{uri: props.songs.imageUri, height: '100%', width: '100%'}}
+          source={{uri: props.songs.artwork, height: '100%', width: '100%'}}
         />
-        <Text color="white" size="md">
-          {props.songs.title}
-        </Text>
       </Box>
     </TouchableOpacity>
   );
