@@ -21,7 +21,8 @@ const Home = () => {
     try {
       let {data, error} = await supabase
         .from('HomePage')
-        .select('*');
+        .select('*')
+        .order('index', { ascending: true });
 
       if (data) {
         console.log(data)
@@ -55,7 +56,7 @@ const Home = () => {
           data={categories}
           renderItem={({item}) => {
             if (item.type === 'Home_3') {
-              return <Home_3 title={item.title} songs={item} />;
+              return <Home_3 title={item.title} songs={item.playlist} />;
             }
             if (item.type === 'Home_2') {
               return <Home_2 title={item.title} albums={item.playlist} />;

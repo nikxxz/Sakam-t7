@@ -9,6 +9,8 @@ import styles from './styles';
 const {height, width} = Dimensions.get('window');
 
 export default SB2 = props => {
+
+  console.log(props.songs)
   const _renderItem = ({item, i}) => {
     return (
       <Box width="100%">
@@ -38,7 +40,7 @@ export default SB2 = props => {
           activeSlideAlignment={'center'}
           loop={true}
           autoplay={true}
-          data={props.songs.songs}
+          data={props.songs}
           sliderWidth={width}
           itemWidth={width * 0.95}
           itemHeight={height}
