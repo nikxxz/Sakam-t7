@@ -10,7 +10,7 @@ const {height, width} = Dimensions.get('window');
 
 export default SB2 = props => {
 
-  console.log(props.songs)
+  // console.log(props.songs)
   const _renderItem = ({item, i}) => {
     return (
       <Box width="100%">

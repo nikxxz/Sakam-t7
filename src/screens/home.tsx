@@ -23,7 +23,7 @@ const Home = () => {
         .from('HomePage')
         .select('*')
         .order('index', {ascending: true});
-        console.log(data)
+      // console.log(data)
 
       if (data) {
         // console.log(data);
