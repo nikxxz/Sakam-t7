@@ -16,10 +16,11 @@ import Search from '../screens/search';
 import Library from '../screens/library';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Playlist from '../screens/Playlist';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 
 const Tab = createBottomTabNavigator();
 
-const HomeStack = createStackNavigator();
+const HomeStack = createSharedElementStackNavigator();
 
 const NowPlayingStackNavigator = () => {
   return (
@@ -31,7 +32,7 @@ const NowPlayingStackNavigator = () => {
   );
 };
 
-const LibraryStack = createStackNavigator();
+const LibraryStack = createSharedElementStackNavigator();
 
 const LibraryStackNavigator = () => {
   return (
@@ -47,21 +48,33 @@ const LibraryStackNavigator = () => {
   );
 };
 
-const SearchStack = createStackNavigator();
+const SearchStack = createSharedElementStackNavigator();
 
 const SearchStackNavigator = () => {
   return (
-    <SearchStack.Navigator screenOptions={{headerShown: false}}>
+    <SearchStack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyleInterpolator: ({current: {progress}}) => {
+          return {cardStyle: {opacity: progress}};
+        },
+      }}>
       <SearchStack.Screen name="Search" component={Search} />
       <SearchStack.Screen
         name="Artist"
         component={ArtistDetails}
         options={{headerTitle: ''}}
+        sharedElements={route => {
+          return ['artistPage'];
+        }}
       />
       <SearchStack.Screen
         name="Album"
         component={AlbumScreen}
-        options={{headerTitle: ''}}
+        options={{headerTitle: '', animationTypeForReplace: 'push'}}
+        sharedElements={route => {
+          return ['artistPage'];
+        }}
       />
     </SearchStack.Navigator>
   );

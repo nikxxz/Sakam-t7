@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
 import {useProgress} from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 import TrackPlayer from 'react-native-track-player';
-import {theme} from '../constants/theme';
 import {Box, Text} from 'react-native-design-utility';
 
 const SliderComp = ({event}) => {

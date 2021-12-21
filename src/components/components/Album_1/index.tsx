@@ -23,8 +23,6 @@ const Album_1 = (props: AlbumCategoryProps) => {
     t();
   }, []);
 
-  
-
   return (
     <Box backgroundColor="#191919" pt={10}>
       <FlatList

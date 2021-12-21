@@ -5,6 +5,7 @@ import Controller from '../components/Controller';
 import SliderComp from '../components/SliderComp';
 import LoadingScreen from '../components/LoadingScreen';
 import {Image, ToastAndroid} from 'react-native';
+import {SharedElement} from 'react-navigation-shared-element';
 
 const Player = () => {
   const [isSeeking, setIsSeeking] = useState(false);
@@ -66,7 +67,11 @@ const Player = () => {
     <Box backgroundColor="#" f={1}>
       <Box f={7} backgroundColor="#191919" align="center" justify="center">
         <Box backgroundColor="green" height={300} width={300}>
-          <Image source={{uri: song.artwork, height: '100%', width: '100%'}} />
+          <SharedElement id="player">
+            <Image
+              source={{uri: song.artwork, height: '100%', width: '100%'}}
+            />
+          </SharedElement>
         </Box>
         <Box justify="center" align="center">
           <Text color="white" size="xl" mt="lg">
