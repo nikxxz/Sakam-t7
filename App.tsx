@@ -8,6 +8,7 @@ import TrackPlayer, {Capability} from 'react-native-track-player';
 import 'react-native-url-polyfill/auto';
 import {ActivityIndicator, StatusBar} from 'react-native';
 import {PlayerContextProvider} from './src/contexts/PlayerContext';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 const App = () => {
   const [isReady, setIsReady] = React.useState<boolean>(false);
@@ -15,6 +16,19 @@ const App = () => {
   React.useEffect(() => {
     TrackPlayer.setupPlayer().then(() => {
       setIsReady(true);
+      GoogleSignin.configure({
+        scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+        webClientId:
+          '155015939649-pdp85o1fhh5fa6aktrmkpu4b4ufika5c.apps.googleusercontent.com',
+        offlineAccess: true,
+        hostedDomain: '',
+        forceCodeForRefreshToken: true,
+        accountName: '',
+        iosClientId: '<FROM DEVELOPER CONSOLE>',
+        googleServicePlistPath: '',
+        openIdRealm: '',
+        profileImageSize: 120,
+      });
     });
   }, []);
 

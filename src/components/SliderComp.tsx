@@ -1,28 +1,45 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {useProgress} from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 import TrackPlayer from 'react-native-track-player';
+import {theme} from '../constants/theme';
+import {Box, Text} from 'react-native-design-utility';
 
-export default SliderComp = ({event}) => {
-  const [duration, setDuration] = useState(0);
-  const [position, setPosition] = useState(0);
+const SliderComp = ({event}) => {
+  // const [duration, setDuration] = useState(0);
+  const [pos, setPos] = useState(0);
   const [sliding, setSliding] = useState(false);
+  const {position, duration} = useProgress();
 
   useEffect(() => {
     if (!sliding) {
-      time();
+      trackDetails();
     }
-  }, [position, event]);
+  }, [position, event, sliding]);
 
-  const time = async () => {
-    const d = await TrackPlayer.getDuration();
+  const trackDetails = async () => {
     const p = await TrackPlayer.getPosition();
-    setDuration(d);
-    setPosition(p);
+    setPos(p);
+  };
+
+  const time = (totalSeconds: number): string => {
+    const hours = Math.floor(totalSeconds / 3600);
+    totalSeconds %= 3600;
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+
+    const minutesStr = String(minutes).padStart(2, '0');
+    const secondsStr = String(seconds).padStart(2, '0');
+
+    if (hours > 0) {
+      return `${hours}:${minutesStr}:${secondsStr}`;
+    }
+    return `${minutesStr}:${secondsStr}`;
   };
 
   return (
-    <View style={styles.sliderContainer}>
+    <>
       <Slider
         style={{width: '100%', height: 20}}
         minimumValue={0}
@@ -35,18 +52,17 @@ export default SliderComp = ({event}) => {
         onSlidingComplete={v => {
           setSliding(false);
           TrackPlayer.seekTo(v);
-          setPosition(v);
+          setPos(v);
         }}
-        onValueChange={v => setPosition(v)}
-        value={sliding ? undefined : position}
+        onValueChange={v => setPos(v)}
+        value={sliding ? undefined : pos}
       />
-    </View>
+      <Box dir="row" align="center" justify="between" px={15} py={5}>
+        <Text color="white">{time(position)}</Text>
+        <Text color="white">{time(duration)}</Text>
+      </Box>
+    </>
   );
 };
 
-const styles = StyleSheet.create({
-  sliderContainer: {
-    paddingHorizontal: '3%',
-    marginBottom: '5%',
-  },
-});
+export default SliderComp;
