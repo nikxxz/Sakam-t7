@@ -2,7 +2,6 @@ import {
   createBottomTabNavigator,
   BottomTabBar,
 } from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import AlbumScreen from '../screens/AlbumScreen';
 import MiniPlayer from '../components/MiniPlayer';
@@ -26,8 +25,16 @@ const NowPlayingStackNavigator = () => {
   return (
     <HomeStack.Navigator screenOptions={{headerShown: false}}>
       <HomeStack.Screen name="Home" component={Home} />
-      <HomeStack.Screen name="AlbumScreen" component={AlbumScreen} />
-      <HomeStack.Screen name="ArtistScreen" component={ArtistDetails} />
+      <HomeStack.Screen
+        name="AlbumScreen"
+        component={AlbumScreen}
+        options={{animationTypeForReplace: 'push'}}
+      />
+      <HomeStack.Screen
+        name="ArtistScreen"
+        component={ArtistDetails}
+        options={{animationTypeForReplace: 'pop'}}
+      />
     </HomeStack.Navigator>
   );
 };
@@ -55,26 +62,17 @@ const SearchStackNavigator = () => {
     <SearchStack.Navigator
       screenOptions={{
         headerShown: false,
-        cardStyleInterpolator: ({current: {progress}}) => {
-          return {cardStyle: {opacity: progress}};
-        },
       }}>
       <SearchStack.Screen name="Search" component={Search} />
       <SearchStack.Screen
         name="Artist"
         component={ArtistDetails}
-        options={{headerTitle: ''}}
-        sharedElements={route => {
-          return ['artistPage'];
-        }}
+        options={{headerTitle: '', animationTypeForReplace: 'pop'}}
       />
       <SearchStack.Screen
         name="Album"
         component={AlbumScreen}
         options={{headerTitle: '', animationTypeForReplace: 'push'}}
-        sharedElements={route => {
-          return ['artistPage'];
-        }}
       />
     </SearchStack.Navigator>
   );

@@ -8,14 +8,15 @@ const Stack = createSharedElementStackNavigator();
 const PlayerStackScreen = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="MiniPlayer" component={MiniPlayer} />
+      <Stack.Screen
+        name="MiniPlayer"
+        component={MiniPlayer}
+        options={{animationEnabled: true, animationTypeForReplace: 'push'}}
+      />
       <Stack.Screen
         name="Player"
         component={Player}
-        sharedElements={route => {
-          return ['player'];
-        }}
-        options={{animationEnabled: true, animationTypeForReplace: 'push'}}
+        options={{animationEnabled: true, animationTypeForReplace: 'pop'}}
       />
     </Stack.Navigator>
   );

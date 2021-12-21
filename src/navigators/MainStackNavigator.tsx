@@ -14,20 +14,20 @@ const MainStackNavigator = () => {
         headerShown: false,
         cardStyle: {backgroundColor: 'black'},
       }}>
-      <Stack.Screen name="Tabs" component={Tabs} />
+      <Stack.Screen
+        name="Tabs"
+        component={Tabs}
+        options={{animationEnabled: true, animationTypeForReplace: 'push'}}
+      />
       <Stack.Screen
         name="Player"
         component={Player}
-        sharedElements={() => {
-          return ['Player'];
-        }}
+        options={{animationEnabled: true, animationTypeForReplace: 'push'}}
       />
       <Stack.Screen
         name="PlayerStack"
         component={PlayerStackScreen}
-        sharedElements={() => {
-          return ['player'];
-        }}
+        options={{animationEnabled: true, animationTypeForReplace: 'pop'}}
       />
     </Stack.Navigator>
   );

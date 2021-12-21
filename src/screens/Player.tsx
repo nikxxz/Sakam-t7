@@ -4,13 +4,14 @@ import TrackPlayer, {State, Event} from 'react-native-track-player';
 import Controller from '../components/Controller';
 import SliderComp from '../components/SliderComp';
 import LoadingScreen from '../components/LoadingScreen';
-import {Image, ToastAndroid} from 'react-native';
+import {Dimensions, Image, ToastAndroid} from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 
 const Player = () => {
-  const [isSeeking, setIsSeeking] = useState(false);
-  const [sliderValue, setSliderValue] = useState(0);
-  const [paused, setPaused] = useState(true);
+  // const [isSeeking, setIsSeeking] = useState(false);
+  // const [sliderValue, setSliderValue] = useState(0);
+  // const [paused, setPaused] = useState(true);
+  const {height, width} = Dimensions.get('screen');
   const [loading, setLoading] = useState(true);
   const [song, setSong] = useState<any>();
 
@@ -24,7 +25,7 @@ const Player = () => {
       setLoading(false);
     };
     yy();
-  }, [song]);
+  }, [event]);
 
   const next = async () => {
     try {
@@ -74,11 +75,11 @@ const Player = () => {
             {song.artist}
           </Text>
         </Box>
-        <Box backgroundColor="green" height="90%" width="100%">
+        <Box backgroundColor="green" height={width * 0.95} width={width * 0.95} alignSelf="center">
           <SharedElement id="player">
             <Image
               source={{uri: song.artwork, height: '100%', width: '100%'}}
-              resizeMode="cover"
+              resizeMode="repeat"
             />
           </SharedElement>
         </Box>
