@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {View, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import TrackPlayer, {State} from 'react-native-track-player';
-//import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import IIcon from 'react-native-vector-icons/Ionicons';
+import { theme } from '../constants/theme';
 
 export default function Controller({next, prev}) {
   const [isPlaying, setIsPlaying] = useState(true);
+  const {height, width} = Dimensions.get('screen');
 
   const pause = async () => {
     await TrackPlayer.pause();
@@ -24,18 +26,30 @@ export default function Controller({next, prev}) {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={prev}>
-        <Icon name="play-skip-back-outline" size={40} color={'#fff'} />
+        <IIcon
+          name="ios-play-skip-back-outline"
+          size={width * 0.085}
+          color="#C6D57E"
+        />
       </TouchableOpacity>
 
       {isPlaying ? (
         // <Text color="white">Playing</Text>
         <TouchableOpacity onPress={pause}>
-          <Icon name="pause-outline" size={80} color={'#fff'} />
+          <IIcon
+            name="ios-pause-circle-outline"
+            size={width * 0.25}
+            color="#C6D57E"
+          />
         </TouchableOpacity>
       ) : (
         //
         <TouchableOpacity onPress={play}>
-          <Icon name="play-outline" size={80} color={'#fff'} />
+          <IIcon
+            name="ios-play-circle-outline"
+            size={width * 0.25}
+            color="#C6D57E"
+          />
         </TouchableOpacity>
       )}
 
@@ -44,7 +58,11 @@ export default function Controller({next, prev}) {
       </TouchableOpacity> */}
 
       <TouchableOpacity onPress={next}>
-        <Icon name="play-skip-forward-outline" size={40} color={'#fff'} />
+        <IIcon
+          name="ios-play-skip-forward-outline"
+          size={width * 0.085}
+          color="#C6D57E"
+        />
       </TouchableOpacity>
     </View>
   );

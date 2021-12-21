@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Text} from 'react-native-design-utility';
-import TrackPlayer, {State, Event} from 'react-native-track-player';
+import TrackPlayer, {State, Event, useProgress} from 'react-native-track-player';
 import Controller from '../components/Controller';
 import SliderComp from '../components/SliderComp';
 import LoadingScreen from '../components/LoadingScreen';
@@ -14,7 +14,7 @@ const Player = () => {
   const {height, width} = Dimensions.get('screen');
   const [loading, setLoading] = useState(true);
   const [song, setSong] = useState<any>();
-
+  const {position} = useProgress();
   const [event, setEvent] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Player = () => {
       setLoading(false);
     };
     yy();
-  }, [event]);
+  }, [event, position]);
 
   const next = async () => {
     try {
@@ -66,16 +66,16 @@ const Player = () => {
 
   return (
     <Box backgroundColor="#" f={1}>
-      <Box f={7} backgroundColor="#191919" justify="center" pt={30}>
+      <Box f={7} backgroundColor="#212121" justify="center" pt={30}>
         <Box justify="start" align="start" pb={20} pl={15}>
-          <Text color="white" size={32} mt={60}>
+          <Text color="#fff" size={32} mt={60}>
             {song.title}
           </Text>
-          <Text color="white" size={20}>
+          <Text color="greyLight" size={20}>
             {song.artist}
           </Text>
         </Box>
-        <Box backgroundColor="green" height={width * 0.95} width={width * 0.95} alignSelf="center">
+        <Box height={width * 0.95} width={width * 0.95} alignSelf="center">
           <SharedElement id="player">
             <Image
               source={{uri: song.artwork, height: '100%', width: '100%'}}
@@ -84,16 +84,16 @@ const Player = () => {
           </SharedElement>
         </Box>
       </Box>
-      <Box f={5} backgroundColor="#191919">
+      <Box f={5} backgroundColor="#212121">
         <Box
           f={2}
           width="100%"
           height={100}
-          backgroundColor="#191919"
+          backgroundColor="#212121"
           justify="center">
           <SliderComp event={event} />
         </Box>
-        <Box f={2}>
+        <Box f={3}>
           <Controller next={next} prev={prev} />
         </Box>
       </Box>

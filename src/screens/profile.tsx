@@ -8,7 +8,7 @@ const {height, width} = Dimensions.get('screen');
 const Profile = () => {
   const navigation = useNavigation();
   return (
-    <Box f={1} center bg="#191919">
+    <Box f={1} center bg="#212121">
       <Box f={3} width={width} align="center" justify="center">
         <Text color="white">RECENTS</Text>
       </Box>

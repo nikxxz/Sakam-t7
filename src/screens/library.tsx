@@ -4,7 +4,7 @@ import {theme} from '../constants/theme';
 
 const Profile = () => {
   return (
-    <Box f={1} backgroundColor="#191919" justify="center">
+    <Box f={1} backgroundColor="#212121" justify="center">
       <Text color={theme.color.white} center>
         Library Page
       </Text>

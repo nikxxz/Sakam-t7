@@ -63,10 +63,10 @@ const App = () => {
     <UtilityThemeProvider theme={theme}>
       {isReady ? (
         <PlayerContextProvider>
-          <NavigationContainer theme={{colors: {background: '#191919'}}}>
+          <NavigationContainer theme={{colors: {background: '#212121'}}}>
             <MainStackNavigator />
           </NavigationContainer>
-          <StatusBar barStyle={'light-content'} backgroundColor={'#191919'} />
+          <StatusBar barStyle={'light-content'} backgroundColor={'#212121'} />
         </PlayerContextProvider>
       ) : (
         <Box f={1} center>

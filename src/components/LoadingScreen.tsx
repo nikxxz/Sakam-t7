@@ -5,7 +5,7 @@ import {theme} from '../constants/theme';
 
 const LoadingScreen = () => {
   return (
-    <Box f={1} center backgroundColor="#191919">
+    <Box f={1} center backgroundColor="#212121">
       <ActivityIndicator size="large" color={theme.color.greenLighter} />
     </Box>
   );

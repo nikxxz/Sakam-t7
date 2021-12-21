@@ -59,7 +59,7 @@ const Search = () => {
   };
 
   return (
-    <Box f={1} bg="#191919">
+    <Box f={1} bg="#212121">
       <Box h={50} w="100%" px="sm" my="sm">
         <Box
           dir="row"

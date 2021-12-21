@@ -14,7 +14,7 @@ const ArtistDetails = ({navigation}) => {
   const {data} = useRoute<NavigationParams>().params ?? {};
   const {song} = useRoute<NavigationParama>().params ?? {};
   return (
-    <Box f={1} bg="#191919">
+    <Box f={1} bg="#212121">
       <FlatList
         ListHeaderComponent={
           <>
