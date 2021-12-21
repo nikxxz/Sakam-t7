@@ -28,7 +28,7 @@ const SearchModal11 = (props: any) => {
             await TrackPlayer.skip(index - 1);
           } else {
             await TrackPlayer.skip(index - 1);
-            await TrackPlayer.play();
+            await TrackPlayer.play(0);
           }
           // onPlay();
         }}>
