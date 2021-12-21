@@ -119,7 +119,7 @@ const AlbumScreen = () => {
         .from('Playlist1')
         .select('*')
         .eq('id', albumId);
-        //559b6ab5-fcce-4ca8-910e-50f5236da417
+      //559b6ab5-fcce-4ca8-910e-50f5236da417
 
       if (error) {
         console.log(error);
