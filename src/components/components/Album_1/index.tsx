@@ -23,10 +23,8 @@ const Album_1 = (props: AlbumCategoryProps) => {
   //   t();
   // }, []);
 
-  
-
   return (
-    <Box backgroundColor="#191919" pt={10}>
+    <Box backgroundColor="#212121" pt={10}>
       <FlatList
         data={props.album.songs}
         renderItem={({item, index}) => (

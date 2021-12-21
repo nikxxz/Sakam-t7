@@ -11,6 +11,7 @@ import {Text, Box} from 'react-native-design-utility';
 import TrackPlayer from 'react-native-track-player';
 import {theme} from '../../../constants/theme';
 import {usePlayerContext} from '../../../contexts/PlayerContext';
+import {SharedElement} from 'react-navigation-shared-element';
 
 export type AlbumProps = {
   song: any;
@@ -120,9 +121,11 @@ const Album_11 = (props: any) => {
               radius={10}
               mr={10}
               style={{overflow: 'hidden'}}>
-              <Image
-                source={{uri: song.artwork, height: '100%', width: '100%'}}
-              />
+              <SharedElement id={'artistPage'}>
+                <Image
+                  source={{uri: song.artwork, height: '100%', width: '100%'}}
+                />
+              </SharedElement>
             </Box>
           </Box>
           <Box f={3} height={100}>

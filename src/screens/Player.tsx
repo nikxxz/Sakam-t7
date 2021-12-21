@@ -1,18 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Text} from 'react-native-design-utility';
-import TrackPlayer, {State, Event} from 'react-native-track-player';
+import TrackPlayer, {State, Event, useProgress} from 'react-native-track-player';
 import Controller from '../components/Controller';
 import SliderComp from '../components/SliderComp';
 import LoadingScreen from '../components/LoadingScreen';
-import {Image, ToastAndroid} from 'react-native';
+import {Dimensions, Image, ToastAndroid} from 'react-native';
+import {SharedElement} from 'react-navigation-shared-element';
 
 const Player = () => {
-  const [isSeeking, setIsSeeking] = useState(false);
-  const [sliderValue, setSliderValue] = useState(0);
-  const [paused, setPaused] = useState(true);
+  // const [isSeeking, setIsSeeking] = useState(false);
+  // const [sliderValue, setSliderValue] = useState(0);
+  // const [paused, setPaused] = useState(true);
+  const {height, width} = Dimensions.get('screen');
   const [loading, setLoading] = useState(true);
   const [song, setSong] = useState<any>();
-
+  const {position} = useProgress();
   const [event, setEvent] = useState(false);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const Player = () => {
       setLoading(false);
     };
     yy();
-  }, [song]);
+  }, [event, position]);
 
   const next = async () => {
     try {
@@ -64,25 +66,30 @@ const Player = () => {
 
   return (
     <Box backgroundColor="#" f={1}>
-      <Box f={7} backgroundColor="#191919" align="center" justify="center">
-        <Box backgroundColor="green" height={300} width={300}>
-          <Image source={{uri: song.artwork, height: '100%', width: '100%'}} />
-        </Box>
-        <Box justify="center" align="center">
-          <Text color="white" size="xl" mt="lg">
+      <Box f={7} backgroundColor="#212121" justify="center" pt={30}>
+        <Box justify="start" align="start" pb={20} pl={15}>
+          <Text color="#fff" size={32} mt={60}>
             {song.title}
           </Text>
-          <Text color="white" size="sm">
+          <Text color="greyLight" size={20}>
             {song.artist}
           </Text>
         </Box>
+        <Box height={width * 0.95} width={width * 0.95} alignSelf="center">
+          <SharedElement id="player">
+            <Image
+              source={{uri: song.artwork, height: '100%', width: '100%'}}
+              resizeMode="repeat"
+            />
+          </SharedElement>
+        </Box>
       </Box>
-      <Box f={5} backgroundColor="#191919">
+      <Box f={5} backgroundColor="#212121">
         <Box
           f={2}
           width="100%"
           height={100}
-          backgroundColor="#191919"
+          backgroundColor="#212121"
           justify="center">
           <SliderComp event={event} />
         </Box>

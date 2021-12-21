@@ -5,6 +5,7 @@ import {Box, Text} from 'react-native-design-utility';
 import {theme} from '../constants/theme';
 import {SearchStackParam, AlbumParam} from '../constants/types';
 import Icon from 'react-native-vector-icons/Feather';
+import {SharedElement} from 'react-navigation-shared-element';
 
 type NavigationParams = RouteProp<SearchStackParam, 'Artist'>;
 type NavigationParama = RouteProp<AlbumParam, 'Artist'>;
@@ -13,18 +14,20 @@ const ArtistDetails = ({navigation}) => {
   const {data} = useRoute<NavigationParams>().params ?? {};
   const {song} = useRoute<NavigationParama>().params ?? {};
   return (
-    <Box f={1} bg="#191919">
+    <Box f={1} bg="#212121">
       <FlatList
         ListHeaderComponent={
           <>
             <Box dir="row" px="sm" mt="sm" mb="md" style={{overflow: 'hidden'}}>
               <Box mr={18}>
-                <Image
-                  source={{
-                    uri: data ? data.artwork : song.artwork,
-                  }}
-                  style={styles.img}
-                />
+                <SharedElement id={'artistPage'}>
+                  <Image
+                    source={{
+                      uri: data ? data.artwork : song.artwork,
+                    }}
+                    style={styles.img}
+                  />
+                </SharedElement>
               </Box>
               <Box f={1}>
                 <Text size="lg" bold color="white">

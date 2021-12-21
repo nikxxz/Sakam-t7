@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#191919',
+    backgroundColor: '#212121',
   },
   container2: {
     backgroundColor: 'red',

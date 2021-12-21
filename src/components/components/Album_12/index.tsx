@@ -29,7 +29,7 @@ const AlbumHeader = (props: any) => {
   };
 
   return (
-    <Box f={1} backgroundColor="#191919" pt={20} paddingHorizontal={12} mb={30}>
+    <Box f={1} backgroundColor="#212121" pt={20} paddingHorizontal={12} mb={30}>
       <Box>
         <Box mr="sm" mt="xs">
           <Text color="white" size="lg" center>{album.title}</Text>

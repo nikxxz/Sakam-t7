@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
 import {useProgress} from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 import TrackPlayer from 'react-native-track-player';
-import {theme} from '../constants/theme';
 import {Box, Text} from 'react-native-design-utility';
+import { theme } from '../constants/theme';
 
 const SliderComp = ({event}) => {
   // const [duration, setDuration] = useState(0);
@@ -44,8 +43,9 @@ const SliderComp = ({event}) => {
         style={{width: '100%', height: 20}}
         minimumValue={0}
         maximumValue={duration}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#fff"
+        minimumTrackTintColor="#D9CAB3"
+        maximumTrackTintColor={theme.color.greyLight}
+        thumbTintColor="#C6D57E"
         onSlidingStart={() => {
           setSliding(true);
         }}
@@ -58,8 +58,8 @@ const SliderComp = ({event}) => {
         value={sliding ? undefined : pos}
       />
       <Box dir="row" align="center" justify="between" px={15} py={5}>
-        <Text color="white">{time(position)}</Text>
-        <Text color="white">{time(duration)}</Text>
+        <Text color="#CDF2CA">{time(position)}</Text>
+        <Text color="#CDF2CA">{time(duration)}</Text>
       </Box>
     </>
   );
