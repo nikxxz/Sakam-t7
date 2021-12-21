@@ -65,21 +65,22 @@ const Player = () => {
 
   return (
     <Box backgroundColor="#" f={1}>
-      <Box f={7} backgroundColor="#191919" align="center" justify="center">
-        <Box backgroundColor="green" height={300} width={300}>
+      <Box f={7} backgroundColor="#191919" justify="center" pt={30}>
+        <Box justify="start" align="start" pb={20} pl={15}>
+          <Text color="white" size={32} mt={60}>
+            {song.title}
+          </Text>
+          <Text color="white" size={20}>
+            {song.artist}
+          </Text>
+        </Box>
+        <Box backgroundColor="green" height="90%" width="100%">
           <SharedElement id="player">
             <Image
               source={{uri: song.artwork, height: '100%', width: '100%'}}
+              resizeMode="cover"
             />
           </SharedElement>
-        </Box>
-        <Box justify="center" align="center">
-          <Text color="white" size="xl" mt="lg">
-            {song.title}
-          </Text>
-          <Text color="white" size="sm">
-            {song.artist}
-          </Text>
         </Box>
       </Box>
       <Box f={5} backgroundColor="#191919">
@@ -91,7 +92,7 @@ const Player = () => {
           justify="center">
           <SliderComp event={event} />
         </Box>
-        <Box f={3}>
+        <Box f={2}>
           <Controller next={next} prev={prev} />
         </Box>
       </Box>
