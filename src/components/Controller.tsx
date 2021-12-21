@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import TrackPlayer, {State} from 'react-native-track-player';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+//import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function Controller({next, prev}) {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -23,18 +24,18 @@ export default function Controller({next, prev}) {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={prev}>
-        <Icon name="skip-backward-outline" size={40} color={'#fff'} />
+        <Icon name="play-skip-back-outline" size={40} color={'#fff'} />
       </TouchableOpacity>
 
       {isPlaying ? (
         // <Text color="white">Playing</Text>
         <TouchableOpacity onPress={pause}>
-          <Icon name="pause-circle-outline" size={100} color={'#fff'} />
+          <Icon name="pause-outline" size={80} color={'#fff'} />
         </TouchableOpacity>
       ) : (
         //
         <TouchableOpacity onPress={play}>
-          <Icon name="play-circle-outline" size={100} color={'#fff'} />
+          <Icon name="play-outline" size={80} color={'#fff'} />
         </TouchableOpacity>
       )}
 
@@ -43,7 +44,7 @@ export default function Controller({next, prev}) {
       </TouchableOpacity> */}
 
       <TouchableOpacity onPress={next}>
-        <Icon name="skip-forward-outline" size={40} color={'#fff'} />
+        <Icon name="play-skip-forward-outline" size={40} color={'#fff'} />
       </TouchableOpacity>
     </View>
   );

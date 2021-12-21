@@ -39,7 +39,7 @@ const App = () => {
     notificationCapabilities: [
       Capability.Play,
       Capability.Pause,
-      Capability.Stop,
+      //Capability.Stop,
       Capability.SkipToNext,
       Capability.SkipToPrevious,
     ],

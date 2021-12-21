@@ -6,6 +6,9 @@ export default async function trackPlayerServices() {
   TrackPlayer.addEventListener('remote-pause', () => TrackPlayer.pause());
 
   TrackPlayer.addEventListener('remote-stop', () => TrackPlayer.destroy());
+  
+  TrackPlayer.addEventListener('remote-next', () => TrackPlayer.skipToNext());
+  TrackPlayer.addEventListener('remote-previous', () => TrackPlayer.skipToPrevious());
 
   TrackPlayer.addEventListener('playback-track-changed', () => {});
 
