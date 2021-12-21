@@ -16,7 +16,6 @@ const SearchModal1 = (props: any) => {
 
   useEffect(() => {
     //TrackPlayer.remove(ptracks)
-    TrackPlayer.add(songs, 0);
     //setptracks(songs)
   }, [songs]);
   return (

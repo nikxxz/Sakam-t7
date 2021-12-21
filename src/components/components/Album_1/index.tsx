@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, FlatList} from 'react-native';
-
-import styles from './styles';
+import {FlatList} from 'react-native';
 import Album_12 from '../Album_12';
 import Album_11 from '../Album_11';
 import {Box} from 'react-native-design-utility';

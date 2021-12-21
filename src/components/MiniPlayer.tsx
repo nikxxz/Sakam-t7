@@ -22,74 +22,63 @@ const MiniPlayer = () => {
     artwork();
   }
 
-  useEffect(() => {}, [playerContext]);
-
-  if (playerContext.isPlaying || playerContext.isPaused) {
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Player', {data: artwor});
-        }}
-        activeOpacity={1}>
-        <Box h={75} bg="#000000" px="sm">
-          <Box f={1} dir="row" align="center" justify="between">
-            <Box
-              h={50}
-              w={50}
-              bg="greenLighter"
-              radius={10}
-              style={{overflow: 'hidden'}}>
-              <Image
-                source={{uri: artwor.artwork, height: '100%', width: '100%'}}
-                style={{flex: 1}}
-              />
-            </Box>
-            <Box f={1} mr={20} ml={20}>
-              <Text color="greenLighter" size={14}>
-                {artwor.title}
-              </Text>
-              <Text color="white" size={10}>
-                {artwor.artist}
-              </Text>
-            </Box>
-            <Box mr="sm">
-              {playerContext.isPaused && (
-                <TouchableOpacity onPress={() => TrackPlayer.play()}>
-                  <Icon
-                    name="play"
-                    size={30}
-                    color={theme.color.greenLighter}
-                  />
-                </TouchableOpacity>
-              )}
-
-              {playerContext.isPlaying && (
-                <TouchableOpacity onPress={() => TrackPlayer.pause()}>
-                  <Icon
-                    name="pause"
-                    size={30}
-                    color={theme.color.greenLighter}
-                  />
-                </TouchableOpacity>
-              )}
-
-              {(playerContext.isStopped || playerContext.isEmpty) && (
-                <TouchableOpacity onPress={() => {}}>
-                  <Icon
-                    name="play"
-                    size={30}
-                    color={theme.color.greenLighter}
-                  />
-                </TouchableOpacity>
-              )}
-            </Box>
-          </Box>
-        </Box>
-      </TouchableOpacity>
-    );
-  } else {
+  if (
+    playerContext.isEmpty ||
+    playerContext.isStopped ||
+    playerContext.isReady
+  ) {
     return null;
   }
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('Player', {data: artwor});
+      }}
+      activeOpacity={1}>
+      <Box h={75} bg="#191919" px="sm">
+        <Box f={1} dir="row" align="center" justify="between">
+          <Box
+            h={50}
+            w={50}
+            bg="greenLighter"
+            radius={10}
+            style={{overflow: 'hidden'}}>
+            <Image
+              source={{uri: artwor.artwork, height: '100%', width: '100%'}}
+              style={{flex: 1}}
+            />
+          </Box>
+          <Box f={1} mr={20} ml={20}>
+            <Text color="greenLighter" size={14}>
+              {artwor.title}
+            </Text>
+            <Text color="white" size={10}>
+              {artwor.artist}
+            </Text>
+          </Box>
+          <Box mr="sm">
+            {playerContext.isPaused && (
+              <TouchableOpacity onPress={() => TrackPlayer.play()}>
+                <Icon name="play" size={30} color={theme.color.greenLighter} />
+              </TouchableOpacity>
+            )}
+
+            {playerContext.isPlaying && (
+              <TouchableOpacity onPress={() => TrackPlayer.pause()}>
+                <Icon name="pause" size={30} color={theme.color.greenLighter} />
+              </TouchableOpacity>
+            )}
+
+            {(playerContext.isStopped || playerContext.isEmpty) && (
+              <TouchableOpacity onPress={() => {}}>
+                <Icon name="play" size={30} color={theme.color.greenLighter} />
+              </TouchableOpacity>
+            )}
+          </Box>
+        </Box>
+      </Box>
+    </TouchableOpacity>
+  );
 };
 
 export default MiniPlayer;

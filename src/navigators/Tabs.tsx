@@ -15,6 +15,7 @@ import Profile from '../screens/profile';
 import Search from '../screens/search';
 import Library from '../screens/library';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Playlist from '../screens/Playlist';
 
 const Tab = createBottomTabNavigator();
 
@@ -34,11 +35,14 @@ const LibraryStack = createStackNavigator();
 
 const LibraryStackNavigator = () => {
   return (
-    <LibraryStack.Navigator screenOptions={{headerShown: false}}>
+    <LibraryStack.Navigator
+      screenOptions={{headerShown: false}}
+      initialRouteName="ProfileScreen">
       <LibraryStack.Screen name="ProfileScreen" component={Profile} />
       <LibraryStack.Screen name="EditProfile" component={EditProfile} />
       <LibraryStack.Screen name="Library" component={Library} />
       <LibraryStack.Screen name="Help" component={Help} />
+      <LibraryStack.Screen name="Playlist" component={Playlist} />
     </LibraryStack.Navigator>
   );
 };

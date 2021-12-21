@@ -38,7 +38,7 @@ const Search = () => {
         p_pattern: text,
       });
 
-      console.log('search data ', data);
+      // console.log('search data ', data);
 
       if (error) {
         console.log(error);

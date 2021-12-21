@@ -23,7 +23,7 @@ const SearchModal11 = (props: any) => {
         onPress={async () => {
           //await TrackPlayer.reset()
           //console.log(tracks)
-          //await TrackPlayer.add(tracks)
+          await TrackPlayer.add(tracks);
           if (playerContext.isPlaying) {
             await TrackPlayer.skip(index - 1);
           } else {

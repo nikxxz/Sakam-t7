@@ -8,18 +8,18 @@ const styles = StyleSheet.create({
     //backgroundColor:'yellow'
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 200,
+    height: 200,
     //margin: 15,
   },
   title: {
     color: 'white',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   subtitle: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
   },
   creatorContainer: {
     flexDirection: 'row',

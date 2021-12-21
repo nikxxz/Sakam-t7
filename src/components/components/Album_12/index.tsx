@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import TrackPlayer from 'react-native-track-player';
 import {theme} from '../../../constants/theme';
@@ -29,19 +29,21 @@ const AlbumHeader = (props: AlbumHeaderProps) => {
 
   return (
     <Box f={1} backgroundColor="#191919" pt={20} paddingHorizontal={12} mb={30}>
-      <View style={styles.creatorContainer}>
-        <View style={styles.containerTitle}>
-          <Text style={styles.title}>{album.title}</Text>
-          <Text style={styles.subtitle}>{album.by}</Text>
-        </View>
+      <Box>
+        <Box mr="sm" mt="xs">
+          <Text color="white" size="lg" center>{album.title}</Text>
+          <Text color="grey" size="sm" center>{album.by}</Text>
+        </Box>
 
-        <Image
-          source={{
-            uri: album.imageUri,
-          }}
-          style={styles.image}
-        />
-      </View>
+        <Box alignItems="center" mx="sm">
+          <Image
+            source={{
+              uri: album.imageUri,
+            }}
+            style={styles.image}
+          />
+        </Box>
+      </Box>
 
       <Box f={1} dir="row" justify="evenly" py="md" px="xs">
         <TouchableOpacity onPress={onPlay}>
@@ -52,7 +54,11 @@ const AlbumHeader = (props: AlbumHeaderProps) => {
             px="sm"
             width={120}
             alignItems="center">
-            <Text color="white" bold style={{textTransform: 'uppercase'}} size={15}>
+            <Text
+              color="white"
+              bold
+              style={{textTransform: 'uppercase'}}
+              size={15}>
               Play
             </Text>
           </Box>
@@ -65,7 +71,11 @@ const AlbumHeader = (props: AlbumHeaderProps) => {
             px="sm"
             width={120}
             alignItems="center">
-            <Text color="white" bold style={{textTransform: 'uppercase'}} size={15}>
+            <Text
+              color="white"
+              bold
+              style={{textTransform: 'uppercase'}}
+              size={15}>
               Shuffle
             </Text>
           </Box>
