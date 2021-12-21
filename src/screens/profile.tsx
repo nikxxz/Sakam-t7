@@ -14,22 +14,22 @@ const Profile = () => {
       </Box>
       <Box f={4} width={width} px="xl" py="sm" dir="col">
         <Box py="md">
-          <TouchableOpacity onPress={navigation.navigate('Library')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Library')}>
             <Text color="white">Library</Text>
           </TouchableOpacity>
         </Box>
         <Box py="md">
-          <TouchableOpacity onPress={navigation.navigate('Playlist')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Playlist')}>
             <Text color="white">Playlists</Text>
           </TouchableOpacity>
         </Box>
         <Box py="md">
-          <TouchableOpacity onPress={navigation.navigate('EditProfile')}>
+          <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
             <Text color="white">Edit Profile</Text>
           </TouchableOpacity>
         </Box>
         <Box py="md">
-          <TouchableOpacity onPress={navigation.navigate('Help')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Help')}>
             <Text color="white">Help</Text>
           </TouchableOpacity>
         </Box>
