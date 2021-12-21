@@ -1,0 +1,5 @@
+{
+    "exoplayer": true,
+    "cache": false,
+    "smoothstreaming":true
+}

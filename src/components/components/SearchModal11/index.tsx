@@ -18,7 +18,7 @@ const SearchModal11 = (props: any) => {
   };
 
   return (
-    <Box h={90} dir="row" align="center" px="sm">
+    <Box h={90} dir="row" align="center" px="sm" pt={5}>
       <TouchableOpacity
         onPress={async () => {
           //await TrackPlayer.reset()

@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, Dimensions} from 'react-native';
 import {Box} from 'react-native-design-utility';
 
-import Carousel from 'react-native-snap-carousel';
+import Carousel , {Pagination}from 'react-native-snap-carousel';
 import Home_31 from '../Home_31';
 import styles from './styles';
 
@@ -47,6 +47,9 @@ export default SB2 = props => {
           renderItem={_renderItem}
           autoplayInterval={5000}
         />
+          {/* <Pagination
+            dotColor={'rgba(255, 255, 255, 0.92)'}
+          /> */}
       </Box>
     </Box>
   );

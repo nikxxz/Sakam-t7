@@ -60,7 +60,7 @@ const Search = () => {
 
   return (
     <Box f={1} bg="#191919">
-      <Box h={50} w="100%" px="sm" my="sm">
+      <Box h={45} w="100%" px="sm" my="sm" mb={10} >
         <Box
           dir="row"
           align="center"
@@ -73,8 +73,8 @@ const Search = () => {
           </Box>
           <TextInput
             style={styles.input}
-            placeholder="Search Artist Or Songs"
-            placeholderTextColor={theme.color.greyLightest}
+            placeholder="Search artists, songs"
+            placeholderTextColor={'grey'}
             selectionColor={theme.color.greenLighter}
             onChangeText={onChangeText}
           />

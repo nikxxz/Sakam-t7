@@ -13,15 +13,15 @@ export type AlbumCategoryProps = {
 
 const Album_1 = (props: AlbumCategoryProps) => {
   //const { setListSong } = useContext(AppContext);
-  useEffect(() => {
-    //setListSong(props.album.songs)
-    const t = async () => {
-      //await TrackPlayer.reset()
-      await TrackPlayer.add(props.album.songs, 0);
-    };
+  // useEffect(() => {
+  //   //setListSong(props.album.songs)
+  //   const t = async () => {
+  //     //await TrackPlayer.reset()
+  //     await TrackPlayer.add(props.album.songs, 0);
+  //   };
 
-    t();
-  }, []);
+  //   t();
+  // }, []);
 
   
 
@@ -30,11 +30,11 @@ const Album_1 = (props: AlbumCategoryProps) => {
       <FlatList
         data={props.album.songs}
         renderItem={({item, index}) => (
-          <Album_11 index={index + 1} song={item} />
+          <Album_11 index={index + 1} song={item} tracks = {props.album.songs}/>
         )}
         keyExtractor={item => item.id}
         showsHorizontalScrollIndicator={false}
-        ListHeaderComponent={() => <Album_12 album={props.album} />}
+        ListHeaderComponent={() => <Album_12 album={props.album} tracks={props.album.songs} />}
       />
     </Box>
   );
