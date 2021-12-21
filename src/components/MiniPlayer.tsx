@@ -36,15 +36,10 @@ const MiniPlayer = () => {
         navigation.navigate('Player', {data: artwor});
       }}
       activeOpacity={1}>
-      <Box h={75} bg="#191919" px="sm">
+      <Box h={75} bg="#080707" px="sm">
         <Box f={1} dir="row" align="center" justify="between">
-          <SharedElement id={"player"}>
-            <Box
-              h={50}
-              w={50}
-              bg="greenLighter"
-              radius={10}
-              style={{overflow: 'hidden'}}>
+          <SharedElement id={'player'}>
+            <Box h={50} w={50} radius={10} style={{overflow: 'hidden'}}>
               <Image
                 source={{uri: artwor.artwork, height: '100%', width: '100%'}}
                 style={{flex: 1}}
