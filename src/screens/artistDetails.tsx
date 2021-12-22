@@ -1,10 +1,11 @@
-import {useRoute} from '@react-navigation/native';
-import React from 'react';
+import {RouteProp, useRoute} from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
 import {FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import {theme} from '../constants/theme';
 import {SearchStackParam, AlbumParam} from '../constants/types';
 import Icon from 'react-native-vector-icons/Feather';
+import { supabase } from '../supabase/supabaseInit';
 
 type NavigationParams = RouteProp<SearchStackParam, 'Artist'>;
 type NavigationParama = RouteProp<AlbumParam, 'Artist'>;
@@ -12,6 +13,42 @@ type NavigationParama = RouteProp<AlbumParam, 'Artist'>;
 const ArtistDetails = ({navigation}) => {
   const {data} = useRoute<NavigationParams>().params ?? {};
   const {song} = useRoute<NavigationParama>().params ?? {};
+
+  const [asongs , setasongs] = useState();
+  const [a , seta] = useState(data ? data.artist : song.artist)
+
+  useEffect(()=>{
+
+    const getArtistSongs = async ()=>{
+      try {
+        //let a = data.artist;
+        console.log(a);
+
+        let {data, error} = await supabase
+          .from('Songs1')
+          .select('*')
+          .ilike('artist', a);
+         
+          //console.log(data)
+          setasongs(data)
+        if (data) {
+           setasongs(data);
+        } else {
+          setasongs([]);
+        }
+        if (error) {
+          console.log(error);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    getArtistSongs();
+  },[])
+
+
+  
   return (
     <Box f={1} bg="#212121">
       <FlatList
@@ -71,15 +108,17 @@ const ArtistDetails = ({navigation}) => {
             </Box>
           </>
         }
-        data={[{id: '1'}, {id: '2'}, {id: 3}]}
-        renderItem={() => (
+        data={asongs}
+        renderItem={({item}) => (
           <TouchableOpacity>
             <Box px="sm" py="sm">
               <Text size="xs" color="greyLighter">
-                {data ? data.artist : song.artist}
+                {/* {item ? item.artist : song.artist} */}
+                {item.artist}
               </Text>
               <Text bold color="greenLighter">
-                {data ? data.title : song.title}
+                {/* {item ? item.title : song.title} */}
+                {item.title}
               </Text>
               {/* <Text size="sm" color="grey" numberOfLines={1}>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos
