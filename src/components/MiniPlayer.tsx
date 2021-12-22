@@ -36,7 +36,7 @@ const MiniPlayer = () => {
         navigation.navigate('Player', {data: artwor});
       }}
       activeOpacity={1}>
-      <Box h={75} bg="#080707" px="sm">
+      <Box h={75} bg="#000" px="sm">
         <Box f={1} dir="row" align="center" justify="between">
           <SharedElement id={'player'}>
             <Box h={50} w={50} radius={10} style={{overflow: 'hidden'}}>
