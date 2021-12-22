@@ -7,7 +7,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import {Dimensions, Image, ToastAndroid} from 'react-native';
 
 const Player = () => {
-  const {height, width} = Dimensions.get('screen');
+  const {width} = Dimensions.get('screen');
   const [loading, setLoading] = useState(true);
   const [song, setSong] = useState<any>();
   const {position} = useProgress();
@@ -54,6 +54,16 @@ const Player = () => {
     setEvent(!event);
   };
 
+  // const pause = async () => {
+  //   await TrackPlayer.pause();
+  //   setIsPlaying(false);
+  // };
+
+  // const play = async () => {
+  //   await TrackPlayer.play();
+  //   setIsPlaying(true);
+  // };
+
   // ....................................................................
 
   if (loading) {
@@ -62,12 +72,12 @@ const Player = () => {
 
   return (
     <Box backgroundColor="#" f={1}>
-      <Box f={7} backgroundColor="#212121" justify="center" pt={30}>
-        <Box justify="start" align="start" pb={20} pl={15}>
-          <Text color="#fff" size={32} mt={60}>
+      <Box f={7} backgroundColor="#000" justify="center" pt={30}>
+        <Box justify="start" align="start" pb={20} pl={20}>
+          <Text color="#fff" size={26} mt={60}>
             {song.title}
           </Text>
-          <Text color="greyLight" size={20}>
+          <Text color="greenLighter" size={20}>
             {song.artist}
           </Text>
         </Box>
@@ -78,12 +88,12 @@ const Player = () => {
           />
         </Box>
       </Box>
-      <Box f={5} backgroundColor="#212121">
+      <Box f={5} backgroundColor="#000">
         <Box
           f={2}
           width="100%"
           height={100}
-          backgroundColor="#212121"
+          backgroundColor="#000"
           justify="center">
           <SliderComp event={event} />
         </Box>

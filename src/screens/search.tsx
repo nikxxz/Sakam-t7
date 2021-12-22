@@ -11,7 +11,7 @@ const Search = () => {
   // const [loading] = useState(false);
   // const navigation = useNavigation();
   const [text, setText] = useState('');
-  const [songs, setSongs] = useState([]);
+  const [songs, setSongs] = useState(null);
 
   const onChangeText = (t: any) => {
     setText(t);
@@ -22,6 +22,9 @@ const Search = () => {
   }, [text]);
 
   const getSearchList2 = async () => {
+    if (text === '') {
+      setSongs(null);
+    }
     if (text !== '') {
       const {data, error} = await supabase.rpc('search_main', {
         p_pattern: text,

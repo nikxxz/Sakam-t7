@@ -1,20 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import IIcon from 'react-native-vector-icons/Ionicons';
+import {usePlayerContext} from '../contexts/PlayerContext';
 
 export default function Controller({next, prev}) {
-  const [isPlaying, setIsPlaying] = useState(true);
   const {width} = Dimensions.get('screen');
+  const playerContext = usePlayerContext();
+
+  useEffect(() => {}, [playerContext]);
 
   const pause = async () => {
     await TrackPlayer.pause();
-    setIsPlaying(false);
   };
 
   const play = async () => {
     await TrackPlayer.play();
-    setIsPlaying(true);
   };
 
   // const next = async () => {
@@ -31,7 +32,7 @@ export default function Controller({next, prev}) {
         />
       </TouchableOpacity>
 
-      {isPlaying ? (
+      {playerContext.isPlaying ? (
         // <Text color="white">Playing</Text>
         <TouchableOpacity onPress={pause}>
           <IIcon

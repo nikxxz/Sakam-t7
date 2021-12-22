@@ -49,7 +49,7 @@ const SearchModal11 = (props: any) => {
           </Box>
           <Box f={3} height={100}>
             <Box f={1} width={200} ml={85}>
-              <Text bold color="white" mt={3}>
+              <Text bold color="white" mt={8} size={18}>
                 {song.title}
               </Text>
               {/* <Text size="xs" color="greyLightest">
@@ -57,7 +57,7 @@ const SearchModal11 = (props: any) => {
               </Text> */}
               <TouchableOpacity
                 onPress={() => navigation.navigate('Artist', {data: song})}>
-                <Text size="sm" color={theme.color.greenLighter} mt={3}>
+                <Text size={15} color={theme.color.greenLighter} mt={4}>
                   {song.artist}
                 </Text>
               </TouchableOpacity>
