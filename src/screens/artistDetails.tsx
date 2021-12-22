@@ -1,11 +1,11 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import {theme} from '../constants/theme';
 import {SearchStackParam, AlbumParam} from '../constants/types';
 import Icon from 'react-native-vector-icons/Feather';
-import { supabase } from '../supabase/supabaseInit';
+import {supabase} from '../supabase/supabaseInit';
 
 type NavigationParams = RouteProp<SearchStackParam, 'Artist'>;
 type NavigationParama = RouteProp<AlbumParam, 'Artist'>;
@@ -14,12 +14,11 @@ const ArtistDetails = ({navigation}) => {
   const {data} = useRoute<NavigationParams>().params ?? {};
   const {song} = useRoute<NavigationParama>().params ?? {};
 
-  const [asongs , setasongs] = useState();
-  const [a , seta] = useState(data ? data.artist : song.artist)
+  const [asongs, setasongs] = useState();
+  const [a, seta] = useState(data ? data.artist : song.artist);
 
-  useEffect(()=>{
-
-    const getArtistSongs = async ()=>{
+  useEffect(() => {
+    const getArtistSongs = async () => {
       try {
         //let a = data.artist;
         console.log(a);
@@ -28,11 +27,11 @@ const ArtistDetails = ({navigation}) => {
           .from('Songs1')
           .select('*')
           .ilike('artist', a);
-         
-          //console.log(data)
-          setasongs(data)
+
+        //console.log(data)
+        setasongs(data);
         if (data) {
-           setasongs(data);
+          setasongs(data);
         } else {
           setasongs([]);
         }
@@ -42,13 +41,11 @@ const ArtistDetails = ({navigation}) => {
       } catch (e) {
         console.log(e);
       }
-    }
+    };
 
     getArtistSongs();
-  },[])
+  }, []);
 
-
-  
   return (
     <Box f={1} bg="#212121">
       <FlatList
