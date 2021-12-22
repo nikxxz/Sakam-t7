@@ -1,12 +1,11 @@
 import * as React from 'react';
 import {StyleSheet, FlatList, View} from 'react-native';
 import {useEffect, useState} from 'react';
-
-import Home_3 from '../components/components/Home_3';
-import Home_2 from '../components/components/Home_2';
-import Home_1 from '../components/components/Home_1';
-import S_ActivityIndicator from '../components/components/ActivityIndicator';
+import Home_3 from '../components/Home_3';
+import Home_2 from '../components/Home_2';
+import Home_1 from '../components/Home_1';
 import {supabase} from '../supabase/supabaseInit';
+import LoadingScreen from '../components/LoadingScreen';
 const Home = () => {
   const [categories, setCategories] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,7 +47,7 @@ const Home = () => {
   };
 
   if (loading) {
-    return <S_ActivityIndicator />;
+    return <LoadingScreen />;
   }
   return (
     <View style={styles.container}>

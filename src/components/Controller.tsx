@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
-import TrackPlayer, {State} from 'react-native-track-player';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import TrackPlayer from 'react-native-track-player';
 import IIcon from 'react-native-vector-icons/Ionicons';
-import { theme } from '../constants/theme';
 
 export default function Controller({next, prev}) {
   const [isPlaying, setIsPlaying] = useState(true);
-  const {height, width} = Dimensions.get('screen');
+  const {width} = Dimensions.get('screen');
 
   const pause = async () => {
     await TrackPlayer.pause();

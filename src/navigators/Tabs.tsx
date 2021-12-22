@@ -157,7 +157,7 @@ const Tabs = () => {
         name="SearchStack"
         component={SearchStackNavigator}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{
           title: '',
           tabBarLabel: '',
@@ -169,7 +169,7 @@ const Tabs = () => {
         }}
         name="LibraryStack"
         component={LibraryStackNavigator}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Box, Text} from 'react-native-design-utility';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import Icon from 'react-native-vector-icons/Feather';
 import {Image, TouchableOpacity} from 'react-native';
 import {theme} from '../constants/theme';
-import TrackPlayer, {State} from 'react-native-track-player';
+import TrackPlayer from 'react-native-track-player';
 import {useNavigation} from '@react-navigation/native';
 
 const MiniPlayer = () => {

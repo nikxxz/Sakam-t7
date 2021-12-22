@@ -1,26 +1,15 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import {Box, Text} from 'react-native-design-utility';
-import EmptyScreen from '../components/EmptyScreen';
-import LoadingScreen from '../components/LoadingScreen';
+import {StyleSheet, TextInput} from 'react-native';
+import {Box} from 'react-native-design-utility';
 import {theme} from '../constants/theme';
 import Icon from 'react-native-vector-icons/Feather';
-import {usePlayerContext} from '../contexts/PlayerContext';
-import TrackPlayer from 'react-native-track-player';
 import {supabase} from '../supabase/supabaseInit';
-import SearchModal1 from '../components/components/SearchModal1';
+import SearchModal1 from '../components/SearchModal1';
 
 const Search = () => {
-  const playerContext = usePlayerContext();
-  const [loading] = useState(false);
-  const navigation = useNavigation();
+  // const playerContext = usePlayerContext();
+  // const [loading] = useState(false);
+  // const navigation = useNavigation();
   const [text, setText] = useState('');
   const [songs, setSongs] = useState([]);
 
@@ -54,13 +43,13 @@ const Search = () => {
     //TrackPlayer.add(songs);
   }, [songs]);
 
-  const artwork = async () => {
-    const art = await TrackPlayer.getTrack(0);
-  };
+  // const artwork = async () => {
+  //   const art = await TrackPlayer.getTrack(0);
+  // };
 
   return (
     <Box f={1} bg="#191919">
-      <Box h={45} w="100%" px="sm" my="sm" mb={10} >
+      <Box h={45} w="100%" px="sm" my="sm" mb={10}>
         <Box
           dir="row"
           align="center"

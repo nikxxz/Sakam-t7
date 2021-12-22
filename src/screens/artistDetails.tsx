@@ -81,11 +81,11 @@ const ArtistDetails = ({navigation}) => {
               <Text bold color="greenLighter">
                 {data ? data.title : song.title}
               </Text>
-              <Text size="sm" color="grey" numberOfLines={1}>
+              {/* <Text size="sm" color="grey" numberOfLines={1}>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos
                 quasi, quibusdam harum similique ipsum laudantium fugiat unde
                 dolor nisi nobis quis cumque temporibus eligendi incidunt?
-              </Text>
+              </Text> */}
             </Box>
           </TouchableOpacity>
         )}

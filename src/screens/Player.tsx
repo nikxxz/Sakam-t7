@@ -1,19 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Text} from 'react-native-design-utility';
-import TrackPlayer, {
-  State,
-  Event,
-  useProgress,
-} from 'react-native-track-player';
+import TrackPlayer, {useProgress} from 'react-native-track-player';
 import Controller from '../components/Controller';
 import SliderComp from '../components/SliderComp';
 import LoadingScreen from '../components/LoadingScreen';
 import {Dimensions, Image, ToastAndroid} from 'react-native';
 
 const Player = () => {
-  // const [isSeeking, setIsSeeking] = useState(false);
-  // const [sliderValue, setSliderValue] = useState(0);
-  // const [paused, setPaused] = useState(true);
   const {height, width} = Dimensions.get('screen');
   const [loading, setLoading] = useState(true);
   const [song, setSong] = useState<any>();

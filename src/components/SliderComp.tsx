@@ -3,7 +3,7 @@ import {useProgress} from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 import TrackPlayer from 'react-native-track-player';
 import {Box, Text} from 'react-native-design-utility';
-import { theme } from '../constants/theme';
+import {theme} from '../constants/theme';
 
 const SliderComp = ({event}) => {
   // const [duration, setDuration] = useState(0);
