@@ -1,33 +1,29 @@
 import {createStackNavigator} from '@react-navigation/stack';
+import {Transition0} from '../constants/animations';
 import React from 'react';
-import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import Player from '../screens/Player';
 import PlayerStackScreen from './PlayerStack';
 import Tabs from './Tabs';
 
-const Stack = createSharedElementStackNavigator();
+const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        cardStyle: {backgroundColor: 'black'},
-      }}>
+    <Stack.Navigator screenOptions={Transition0}>
       <Stack.Screen
         name="Tabs"
         component={Tabs}
-        options={{animationEnabled: true, animationTypeForReplace: 'push'}}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Player"
         component={Player}
-        options={{animationEnabled: true, animationTypeForReplace: 'push'}}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="PlayerStack"
         component={PlayerStackScreen}
-        options={{animationEnabled: true, animationTypeForReplace: 'pop'}}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

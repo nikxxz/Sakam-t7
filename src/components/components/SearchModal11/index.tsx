@@ -5,7 +5,6 @@ import {Box, Text} from 'react-native-design-utility';
 import TrackPlayer, {State} from 'react-native-track-player';
 import {usePlayerContext} from '../../../contexts/PlayerContext';
 import {theme} from '../../../constants/theme';
-import {SharedElement} from 'react-navigation-shared-element';
 export type AlbumProps = {
   songs: any;
 };
@@ -42,11 +41,9 @@ const SearchModal11 = (props: any) => {
               radius={10}
               mr={10}
               style={{overflow: 'hidden'}}>
-              <SharedElement id="artistPage">
-                <Image
-                  source={{uri: song.artwork, height: '100%', width: '100%'}}
-                />
-              </SharedElement>
+              <Image
+                source={{uri: song.artwork, height: '100%', width: '100%'}}
+              />
             </Box>
           </Box>
           <Box f={3} height={100}>

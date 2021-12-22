@@ -6,7 +6,6 @@ import {Image, TouchableOpacity} from 'react-native';
 import {theme} from '../constants/theme';
 import TrackPlayer, {State} from 'react-native-track-player';
 import {useNavigation} from '@react-navigation/native';
-import {SharedElement} from 'react-navigation-shared-element';
 
 const MiniPlayer = () => {
   const playerContext = usePlayerContext();
@@ -27,7 +26,6 @@ const MiniPlayer = () => {
     playerContext.isEmpty ||
     playerContext.isStopped ||
     playerContext.isReady
-    
   ) {
     return null;
   }
@@ -39,14 +37,12 @@ const MiniPlayer = () => {
       activeOpacity={1}>
       <Box h={75} bg="#000" px="sm">
         <Box f={1} dir="row" align="center" justify="between">
-          <SharedElement id={'player'}>
-            <Box h={50} w={50} radius={10} style={{overflow: 'hidden'}}>
-              <Image
-                source={{uri: artwor.artwork, height: '100%', width: '100%'}}
-                style={{flex: 1}}
-              />
-            </Box>
-          </SharedElement>
+          <Box h={50} w={50} radius={10} style={{overflow: 'hidden'}}>
+            <Image
+              source={{uri: artwor.artwork, height: '100%', width: '100%'}}
+              style={{flex: 1}}
+            />
+          </Box>
 
           <Box f={1} mr={20} ml={20}>
             <Text color="greenLighter" size={14}>
@@ -70,7 +66,7 @@ const MiniPlayer = () => {
               </TouchableOpacity>
             )}
 
-            {(playerContext.isStopped ) && (//|| playerContext.isEmpty
+            {playerContext.isStopped && ( //|| playerContext.isEmpty
               <TouchableOpacity onPress={() => {}}>
                 <Icon name="play" size={30} color={theme.color.greenLighter} />
               </TouchableOpacity>

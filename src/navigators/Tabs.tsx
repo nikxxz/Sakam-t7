@@ -15,64 +15,91 @@ import Search from '../screens/search';
 import Library from '../screens/library';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Playlist from '../screens/Playlist';
-import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
+import {TransitionSlide} from '../constants/animations';
+
+import {createStackNavigator} from '@react-navigation/stack';
 
 const Tab = createBottomTabNavigator();
 
-const HomeStack = createSharedElementStackNavigator();
+const HomeStack = createStackNavigator();
 
 const NowPlayingStackNavigator = () => {
   return (
-    <HomeStack.Navigator screenOptions={{headerShown: false}}>
-      <HomeStack.Screen name="Home" component={Home} />
+    <HomeStack.Navigator screenOptions={TransitionSlide}>
+      <HomeStack.Screen
+        name="Home"
+        component={Home}
+        options={{headerShown: false}}
+      />
       <HomeStack.Screen
         name="AlbumScreen"
         component={AlbumScreen}
-        options={{animationTypeForReplace: 'push'}}
+        options={{headerShown: false}}
       />
       <HomeStack.Screen
         name="ArtistScreen"
         component={ArtistDetails}
-        options={{animationTypeForReplace: 'pop'}}
+        options={{headerShown: false}}
       />
     </HomeStack.Navigator>
   );
 };
 
-const LibraryStack = createSharedElementStackNavigator();
+const LibraryStack = createStackNavigator();
 
 const LibraryStackNavigator = () => {
   return (
     <LibraryStack.Navigator
-      screenOptions={{headerShown: false}}
+      screenOptions={TransitionSlide}
       initialRouteName="ProfileScreen">
-      <LibraryStack.Screen name="ProfileScreen" component={Profile} />
-      <LibraryStack.Screen name="EditProfile" component={EditProfile} />
-      <LibraryStack.Screen name="Library" component={Library} />
-      <LibraryStack.Screen name="Help" component={Help} />
-      <LibraryStack.Screen name="Playlist" component={Playlist} />
+      <LibraryStack.Screen
+        name="ProfileScreen"
+        component={Profile}
+        options={{headerShown: false}}
+      />
+      <LibraryStack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{headerShown: false}}
+      />
+      <LibraryStack.Screen
+        name="Library"
+        component={Library}
+        options={{headerShown: false}}
+      />
+      <LibraryStack.Screen
+        name="Help"
+        component={Help}
+        options={{headerShown: false}}
+      />
+      <LibraryStack.Screen
+        name="Playlist"
+        component={Playlist}
+        options={{headerShown: false}}
+      />
     </LibraryStack.Navigator>
   );
 };
 
-const SearchStack = createSharedElementStackNavigator();
+const SearchStack = createStackNavigator();
 
 const SearchStackNavigator = () => {
   return (
-    <SearchStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <SearchStack.Screen name="Search" component={Search} />
+    <SearchStack.Navigator screenOptions={TransitionSlide}>
+      <SearchStack.Screen
+        name="Search"
+        component={Search}
+        options={{headerShown: false}}
+      />
       <SearchStack.Screen
         name="Artist"
         component={ArtistDetails}
-        options={{headerTitle: '', animationTypeForReplace: 'pop'}}
+        options={{headerShown: false}}
       />
       <SearchStack.Screen
         name="Album"
         component={AlbumScreen}
-        options={{headerTitle: '', animationTypeForReplace: 'push'}}
+        options={{headerShown: false}}
       />
     </SearchStack.Navigator>
   );

@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Text} from 'react-native-design-utility';
-import TrackPlayer, {State, Event, useProgress} from 'react-native-track-player';
+import TrackPlayer, {
+  State,
+  Event,
+  useProgress,
+} from 'react-native-track-player';
 import Controller from '../components/Controller';
 import SliderComp from '../components/SliderComp';
 import LoadingScreen from '../components/LoadingScreen';
 import {Dimensions, Image, ToastAndroid} from 'react-native';
-import {SharedElement} from 'react-navigation-shared-element';
 
 const Player = () => {
   // const [isSeeking, setIsSeeking] = useState(false);
@@ -76,12 +79,10 @@ const Player = () => {
           </Text>
         </Box>
         <Box height={width * 0.95} width={width * 0.95} alignSelf="center">
-          <SharedElement id="player">
-            <Image
-              source={{uri: song.artwork, height: '100%', width: '100%'}}
-              resizeMode="repeat"
-            />
-          </SharedElement>
+          <Image
+            source={{uri: song.artwork, height: '100%', width: '100%'}}
+            resizeMode="repeat"
+          />
         </Box>
       </Box>
       <Box f={5} backgroundColor="#212121">

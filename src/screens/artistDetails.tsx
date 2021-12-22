@@ -5,7 +5,6 @@ import {Box, Text} from 'react-native-design-utility';
 import {theme} from '../constants/theme';
 import {SearchStackParam, AlbumParam} from '../constants/types';
 import Icon from 'react-native-vector-icons/Feather';
-import {SharedElement} from 'react-navigation-shared-element';
 
 type NavigationParams = RouteProp<SearchStackParam, 'Artist'>;
 type NavigationParama = RouteProp<AlbumParam, 'Artist'>;
@@ -20,14 +19,12 @@ const ArtistDetails = ({navigation}) => {
           <>
             <Box dir="row" px="sm" mt="sm" mb="md" style={{overflow: 'hidden'}}>
               <Box mr={18}>
-                <SharedElement id={'artistPage'}>
-                  <Image
-                    source={{
-                      uri: data ? data.artwork : song.artwork,
-                    }}
-                    style={styles.img}
-                  />
-                </SharedElement>
+                <Image
+                  source={{
+                    uri: data ? data.artwork : song.artwork,
+                  }}
+                  style={styles.img}
+                />
               </Box>
               <Box f={1}>
                 <Text size="lg" bold color="white">
