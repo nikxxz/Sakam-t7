@@ -14,12 +14,12 @@ const SearchModal1 = (props: any) => {
     //TrackPlayer.add(songs);
   }
 
-  useEffect(() => {
-    //TrackPlayer.remove(ptracks)
-    //setptracks(songs)
-  }, [songs]);
+  // useEffect(() => {
+  //   //TrackPlayer.remove(ptracks)
+  //   //setptracks(songs)
+  // }, [songs]);
   return (
-    <View style={{marginBottom: 30}}>
+    <View style={{marginBottom: 30,marginHorizontal:5}}>
       <FlatList
         keyboardShouldPersistTaps="handled"
         data={songs}

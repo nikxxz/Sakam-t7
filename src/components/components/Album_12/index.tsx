@@ -11,7 +11,7 @@ export type AlbumHeaderProps = {
   album: any;
 };
 
-const AlbumHeader = (props: AlbumHeaderProps) => {
+const AlbumHeader = (props: any) => {
   const {album} = props;
   const isPlaying = false;
   //console.log(props);
@@ -19,6 +19,7 @@ const AlbumHeader = (props: AlbumHeaderProps) => {
 
   const onPlay = async () => {
     // console.log('PLAY SONGS CLICKED');
+    await TrackPlayer.add(props.tracks, 0);
     if (playerContext.isPlaying) {
       await TrackPlayer.skip(0);
     } else {

@@ -190,6 +190,10 @@ android {
 }
 
 dependencies {
+
+    //Exo player dependency
+    //compile 'com.google.android.exoplayer:exoplayer:r2.3.1'
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules

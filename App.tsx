@@ -9,12 +9,13 @@ import 'react-native-url-polyfill/auto';
 import {ActivityIndicator, StatusBar} from 'react-native';
 import {PlayerContextProvider} from './src/contexts/PlayerContext';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import S_ActivityIndicator from './src/components/components/ActivityIndicator';
 
 const App = () => {
   const [isReady, setIsReady] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    TrackPlayer.setupPlayer().then(() => {
+    TrackPlayer.setupPlayer().then(() => {//{minBuffer:2,playBuffer:1}
       setIsReady(true);
       GoogleSignin.configure({
         scopes: ['https://www.googleapis.com/auth/drive.readonly'],
@@ -28,8 +29,10 @@ const App = () => {
         googleServicePlistPath: '',
         openIdRealm: '',
         profileImageSize: 120,
-      });
-    });
+      })
+    }).catch((e)=>{
+      console.log(e);
+    });;
   }, []);
 
   TrackPlayer.updateOptions({
@@ -70,7 +73,9 @@ const App = () => {
         </PlayerContextProvider>
       ) : (
         <Box f={1} center>
-          <ActivityIndicator />
+          {/* <ActivityIndicator /> */}
+          <S_ActivityIndicator />
+
         </Box>
       )}
     </UtilityThemeProvider>

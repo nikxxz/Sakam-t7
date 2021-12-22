@@ -103,6 +103,7 @@ const Album_11 = (props: any) => {
           //await TrackPlayer.reset()
           //console.log(tracks)
           //await TrackPlayer.add(tracks)
+          await TrackPlayer.add(props.tracks, 0);
           if (playerContext.isPlaying) {
             await TrackPlayer.skip(index - 1);
           } else {

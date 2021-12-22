@@ -27,6 +27,7 @@ const MiniPlayer = () => {
     playerContext.isEmpty ||
     playerContext.isStopped ||
     playerContext.isReady
+    
   ) {
     return null;
   }
@@ -69,7 +70,7 @@ const MiniPlayer = () => {
               </TouchableOpacity>
             )}
 
-            {(playerContext.isStopped || playerContext.isEmpty) && (
+            {(playerContext.isStopped ) && (//|| playerContext.isEmpty
               <TouchableOpacity onPress={() => {}}>
                 <Icon name="play" size={30} color={theme.color.greenLighter} />
               </TouchableOpacity>
