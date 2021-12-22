@@ -74,7 +74,7 @@ const Player = () => {
         <Box height={width * 0.95} width={width * 0.95} alignSelf="center">
           <Image
             source={{uri: song.artwork, height: '100%', width: '100%'}}
-            resizeMode="repeat"
+            resizeMode="cover"
           />
         </Box>
       </Box>
