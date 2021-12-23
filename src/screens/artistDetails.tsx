@@ -6,6 +6,8 @@ import {theme} from '../constants/theme';
 import {SearchStackParam, AlbumParam} from '../constants/types';
 import Icon from 'react-native-vector-icons/Feather';
 import {supabase} from '../supabase/supabaseInit';
+import TrackPlayer from 'react-native-track-player';
+import {usePlayerContext} from '../contexts/PlayerContext';
 
 type NavigationParams = RouteProp<SearchStackParam, 'Artist'>;
 type NavigationParama = RouteProp<AlbumParam, 'Artist'>;
@@ -13,7 +15,7 @@ type NavigationParama = RouteProp<AlbumParam, 'Artist'>;
 const ArtistDetails = ({navigation}) => {
   const {data} = useRoute<NavigationParams>().params ?? {};
   const {song} = useRoute<NavigationParama>().params ?? {};
-
+  const playerContext = usePlayerContext();
   const [asongs, setasongs] = useState();
   const [a, seta] = useState(data ? data.artist : song.artist);
 
@@ -21,7 +23,7 @@ const ArtistDetails = ({navigation}) => {
     const getArtistSongs = async () => {
       try {
         //let a = data.artist;
-        console.log(a);
+        // console.log(a);
 
         let {data, error} = await supabase
           .from('Songs1')
@@ -106,8 +108,17 @@ const ArtistDetails = ({navigation}) => {
           </>
         }
         data={asongs}
-        renderItem={({item}) => (
-          <TouchableOpacity>
+        renderItem={({item, index}) => (
+          <TouchableOpacity
+            onPress={async () => {
+              await TrackPlayer.add(asongs, 0);
+              if (playerContext.isPlaying) {
+                await TrackPlayer.skip(index);
+              } else {
+                await TrackPlayer.skip(index);
+                await TrackPlayer.play();
+              }
+            }}>
             <Box px="sm" py="sm">
               <Text size="xs" color="greyLighter">
                 {/* {item ? item.artist : song.artist} */}

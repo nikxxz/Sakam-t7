@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, FlatList} from 'react-native';
 import SearchModal11 from '../SearchModal11';
-import {Box, Text} from 'react-native-design-utility';
+import {Text} from 'react-native-design-utility';
 import {theme} from '../../constants/theme';
 
 const SearchModal1 = (props: any) => {
@@ -20,11 +20,11 @@ const SearchModal1 = (props: any) => {
           height: 50,
         }}>
         <Text bold color="white" mt={3}>
-          Search for songs, artist...
+          Search For Songs or Artists
         </Text>
       </View>
     );
-  } else if (songs.length == 0) {
+  } else if (songs.length === 0) {
     return (
       <View
         style={{
@@ -36,7 +36,7 @@ const SearchModal1 = (props: any) => {
           height: 50,
         }}>
         <Text bold color={theme.color.redDark} mt={3}>
-          Song, artist not found...
+          Song/Artist Not Found
         </Text>
       </View>
     );

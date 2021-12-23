@@ -19,7 +19,7 @@ const Search = () => {
 
   useEffect(() => {
     getSearchList2();
-  }, [text]);
+  }, [text, songs]);
 
   const getSearchList2 = async () => {
     if (text === '') {
@@ -40,11 +40,6 @@ const Search = () => {
       }
     }
   };
-
-  useEffect(() => {
-    //TrackPlayer.reset()
-    //TrackPlayer.add(songs);
-  }, [songs]);
 
   // const artwork = async () => {
   //   const art = await TrackPlayer.getTrack(0);
