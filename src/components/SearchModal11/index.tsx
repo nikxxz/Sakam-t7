@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, TouchableOpacity, Keyboard, Dimensions} from 'react-native';
+import {Image, TouchableOpacity, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Box, Text} from 'react-native-design-utility';
 import TrackPlayer from 'react-native-track-player';
@@ -17,16 +17,10 @@ const SearchModal11 = (props: any) => {
   const playerContext = usePlayerContext();
   const navigation = useNavigation();
 
-  // const onPlay = () => {
-  //   Keyboard.dismiss();
-  // };
-
   return (
     <Box h={90} dir="row" align="center" px="sm" pt={5}>
       <TouchableOpacity
         onPress={async () => {
-          //await TrackPlayer.reset()
-          //console.log(tracks)
           await TrackPlayer.add(tracks, 0);
           if (playerContext.isPlaying) {
             await TrackPlayer.skip(index - 1);
