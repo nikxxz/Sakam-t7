@@ -7,9 +7,6 @@ import {supabase} from '../supabase/supabaseInit';
 import SearchModal1 from '../components/SearchModal1';
 
 const Search = () => {
-  // const playerContext = usePlayerContext();
-  // const [loading] = useState(false);
-  // const navigation = useNavigation();
   const [text, setText] = useState('');
   const [songs, setSongs] = useState(null);
 
@@ -29,8 +26,6 @@ const Search = () => {
       const {data, error} = await supabase.rpc('search_main', {
         p_pattern: text,
       });
-
-      // console.log('search data ', data);
 
       if (error) {
         console.log(error);
@@ -60,7 +55,7 @@ const Search = () => {
           </Box>
           <TextInput
             style={styles.input}
-            placeholder="Search artists, songs"
+            placeholder="Search For Artists, Songs"
             placeholderTextColor={'grey'}
             selectionColor={theme.color.greenLighter}
             onChangeText={onChangeText}

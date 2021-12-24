@@ -1,4 +1,10 @@
 const color = {
+
+  primary: '#16C172',
+  // accent: ,
+  // neutralLight: ,
+  // neutralDark: ,
+
   black: '#212121',
 
   greyDarkest: '#242424',

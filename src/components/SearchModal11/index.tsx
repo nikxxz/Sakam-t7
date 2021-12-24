@@ -1,10 +1,13 @@
 import React from 'react';
-import {Image, TouchableOpacity, Keyboard} from 'react-native';
+import {Image, TouchableOpacity, Keyboard, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Box, Text} from 'react-native-design-utility';
 import TrackPlayer from 'react-native-track-player';
 import {usePlayerContext} from '../../contexts/PlayerContext';
 import {theme} from '../../constants/theme';
+
+const {width} = Dimensions.get('screen');
+
 export type AlbumProps = {
   songs: any;
 };
@@ -31,36 +34,37 @@ const SearchModal11 = (props: any) => {
             await TrackPlayer.skip(index - 1);
             await TrackPlayer.play(0);
           }
-          // onPlay();
         }}>
         <Box dir="row">
-          <Box f={1} height={100}>
+          <Box f={1} height={width * 0.1}>
             <Box
-              h={70}
-              w={70}
-              bg="blueLight"
-              radius={10}
-              mr={10}
+              h={width * 0.15}
+              w={width * 0.15}
+              radius={width * 0.025}
+              mr={width * 0.025}
               style={{overflow: 'hidden'}}>
               <Image
                 source={{uri: song.artwork, height: '100%', width: '100%'}}
               />
             </Box>
           </Box>
-          <Box f={3} height={100}>
-            <Box f={1} width={200} ml={85}>
-              <Text bold color="white" mt={8} size={18}>
-                {song.title}
-              </Text>
-              {/* <Text size="xs" color="greyLightest">
-                Album
-              </Text> */}
+          <Box f={3} height={width * 0.15} py={width * 0.02}>
+            <Box f={1} width={width} ml={width * 0.175}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('Artist', {data: song})}>
-                <Text size={15} color={theme.color.greenLighter} mt={4}>
+                onPress={() =>
+                  navigation.navigate('ArtistScreen', {data: song})
+                }>
+                <Text size={width * 0.03} color={theme.color.greenLighter}>
                   {song.artist}
                 </Text>
               </TouchableOpacity>
+              <Text
+                bold
+                color="#E1BB80"
+                size={width * 0.035}
+                mt={width * 0.005}>
+                {song.title}
+              </Text>
             </Box>
           </Box>
         </Box>

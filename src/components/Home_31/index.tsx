@@ -1,16 +1,20 @@
-import React, {useEffect} from 'react';
-import {Image, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Dimensions, Image, TouchableOpacity} from 'react-native';
 import {Box} from 'react-native-design-utility';
+
+const {width} = Dimensions.get('screen');
+
 export type AlbumProps = {
   song: any;
 };
 
 const Home_31 = (props: any) => {
-  useEffect(() => {}, []);
-
   return (
     <TouchableOpacity onPress={() => {}} activeOpacity={1}>
-      <Box style={{overflow: 'hidden'}} height={230} radius={10} mx={1}>
+      <Box
+        style={{overflow: 'hidden'}}
+        height={width * 0.5}
+        radius={width * 0.025}>
         <Image
           source={{uri: props.songs.artwork, height: '100%', width: '100%'}}
         />

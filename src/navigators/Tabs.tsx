@@ -123,7 +123,7 @@ const Tabs = () => {
           fontSize: 10,
         },
         //tabBarIconStyle: {display: 'none'},
-        tabBarActiveTintColor: theme.color.greenLighter,
+        tabBarActiveTintColor: '#31E981',
         tabBarInactiveTintColor: theme.color.greyDark,
         tabBarStyle: {
           backgroundColor: 'black',

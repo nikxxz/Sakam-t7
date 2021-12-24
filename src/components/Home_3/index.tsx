@@ -26,12 +26,8 @@ export default SB2 = props => {
   };
 
   return (
-    <Box mt="md" mb="sm">
-      <Box>
-        {/* <Text style={styles.title}>{props.title}</Text> */}
-        {/* <Text style={styles.see_all}>Show more</Text> */}
-      </Box>
-      <Box align="center" justify="center" f={1} ml={3}>
+    <Box mt={width * 0.05} mb={width * 0.035}>
+      <Box align="center" justify="center" f={1} ml={width * 0.001}>
         <Carousel
           activeSlideAlignment={'center'}
           loop={true}

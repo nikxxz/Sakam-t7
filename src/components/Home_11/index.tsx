@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Image, TouchableWithoutFeedback} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styles from './styles';
-import {Album} from '../../types';
 import {Text} from 'react-native-design-utility';
 
 export type AlbumProps = {

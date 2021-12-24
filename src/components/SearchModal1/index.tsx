@@ -1,53 +1,32 @@
 import React from 'react';
-import {View, FlatList} from 'react-native';
+import {View, FlatList, StyleSheet, Dimensions} from 'react-native';
 import SearchModal11 from '../SearchModal11';
 import {Text} from 'react-native-design-utility';
-import {theme} from '../../constants/theme';
+
+const {width} = Dimensions.get('screen');
 
 const SearchModal1 = (props: any) => {
   const {songs} = {...props};
-  // const [ptracks, setptracks] = useState([]);
 
   if (songs == null) {
     return (
-      <View
-        style={{
-          marginBottom: 30,
-          marginHorizontal: 5,
-          alignItems: 'center',
-          flex: 1,
-          justifyContent: 'center',
-          height: 50,
-        }}>
-        <Text bold color="white" mt={3}>
+      <View style={styles.empty}>
+        <Text bold color="#4EB885" size={width * 0.035}>
           Search For Songs or Artists
         </Text>
       </View>
     );
   } else if (songs.length === 0) {
     return (
-      <View
-        style={{
-          marginBottom: 30,
-          marginHorizontal: 5,
-          alignItems: 'center',
-          flex: 1,
-          justifyContent: 'center',
-          height: 50,
-        }}>
-        <Text bold color={theme.color.redDark} mt={3}>
-          Song/Artist Not Found
+      <View style={styles.notFound}>
+        <Text bold color="#FF6663" size={width * 0.035}>
+          Song or Artist Not Found
         </Text>
       </View>
     );
   }
-
-  // useEffect(() => {
-  //   //TrackPlayer.remove(ptracks)
-  //   //setptracks(songs)
-  // }, [songs]);
   return (
-    <View style={{marginBottom: 30, marginHorizontal: 5}}>
+    <View style={styles.list}>
       <FlatList
         keyboardShouldPersistTaps="handled"
         data={songs}
@@ -64,3 +43,23 @@ const SearchModal1 = (props: any) => {
 };
 
 export default SearchModal1;
+
+const styles = StyleSheet.create({
+  empty: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  notFound: {
+    marginBottom: 30,
+    marginHorizontal: 5,
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    height: 50,
+  },
+  list: {
+    marginBottom: 30,
+    marginHorizontal: 5,
+  },
+});
