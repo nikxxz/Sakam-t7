@@ -26,9 +26,19 @@ export default SplashScreen = () => {
     }
   };
 
-  setTimeout(() => {
+  const getUserDetails = async() =>{
+    const currentUser = await GoogleSignin.getCurrentUser();
+    console.log(currentUser);
+  }
+
+  useEffect(()=>{
     isAuthenticated();
-  }, 2500);
+    getUserDetails();
+  },[])
+
+  // setTimeout(() => {
+  //   isAuthenticated();
+  // }, 2500);
 
   return (
     <LinearGradient

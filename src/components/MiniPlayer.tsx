@@ -30,9 +30,9 @@ const MiniPlayer = () => {
     playerContext.isPlaying === false &&
     playerContext.isPaused === false
   ) {
-    console.log(playerContext.isEmpty)
-    console.log(playerContext.isStopped)
-    console.log(playerContext.isReady)
+    // console.log(playerContext.isEmpty)
+    // console.log(playerContext.isStopped)
+    // console.log(playerContext.isReady)
     return null;
   }
   return (
@@ -41,7 +41,7 @@ const MiniPlayer = () => {
         navigation.navigate('Player');
       }}
       activeOpacity={1}>
-      <Box h={75} bg="#000" px="sm">
+      <Box h={65} bg="#000" px="sm" opacity={0.8}>
         <Box f={1} dir="row" align="center" justify="between">
           <Box h={50} w={50} radius={10} style={{overflow: 'hidden'}}>
             <Image

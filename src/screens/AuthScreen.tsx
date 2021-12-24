@@ -1,11 +1,15 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef} from 'react';
-import {Animated, StyleSheet, Text, View} from 'react-native';
+import {Animated, Dimensions, Image, StyleSheet,  View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {theme} from '../constants/theme';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { supabase } from '../supabase/supabaseInit';
+import { Text } from 'react-native-design-utility';
+
+const {height,width} = Dimensions.get('screen');
 
 const AuthScreen = () => {
   const navigation = useNavigation();
@@ -28,6 +32,19 @@ const AuthScreen = () => {
       const userInfo = await GoogleSignin.signIn();
       setUser(userInfo);
       // console.log(user.user);
+      
+    const { data, error } = await supabase
+    .from('Users')
+    .insert([
+      { 
+        first_name: userInfo.user.givenName, 
+        last_name: userInfo.user.familyName,
+        email:userInfo.user.email,
+        profile_photo:userInfo.user.photo
+    
+      },
+    ])
+
       setAuthenticated(true);
     } catch (e) {
       console.log(e);
@@ -44,8 +61,9 @@ const AuthScreen = () => {
       start={{x: 0.3, y: 0.2}}
       style={styles.container}>
       <View style={styles.sakam}>
-        <Animated.Text style={[styles.txt, {opacity: fade}]}>
-          SAKAM
+      <Image source={require('../../assets/icon.png')} style={styles.img} />
+        <Animated.Text style={[styles.txt, {opacity: fade}]}>       
+          Sakam
         </Animated.Text>
       </View>
       <Animated.View style={[styles.btn, {opacity: fade}]}>
@@ -77,12 +95,17 @@ const styles = StyleSheet.create({
   google: {
     color: '#fff',
     fontSize: 20,
-    textTransform: 'uppercase',
+    //textTransform: 'uppercase',
     fontWeight: '700',
   },
   sakam: {
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection:'row'
+  },
+  img: {
+    height: width * 0.13,
+    width: width * 0.12,
   },
   btn: {
     alignItems: 'center',

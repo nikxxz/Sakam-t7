@@ -129,6 +129,7 @@ const Tabs = () => {
           backgroundColor: 'black',
           borderTopWidth: 0,
           paddingTop: 10,
+          opacity:0.8
         },
       }}>
       <Tab.Screen

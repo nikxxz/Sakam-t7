@@ -4,9 +4,10 @@ import {
   FlatList,
   View,
   Image,
-  Text,
+  
   Dimensions,
 } from 'react-native';
+import {Box, Text} from 'react-native-design-utility';
 import {useEffect, useState} from 'react';
 import Home_3 from '../components/Home_3';
 import Home_2 from '../components/Home_2';
@@ -16,7 +17,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import LinearGradient from 'react-native-linear-gradient';
 import { theme } from '../constants/theme';
 
-const {width} = Dimensions.get('screen');
+const {height,width} = Dimensions.get('screen');
 
 const Home = () => {
   const [categories, setCategories] = useState(null);
@@ -64,7 +65,7 @@ const Home = () => {
       <View>
         <View style={styles.header}>
           <Image source={require('../../assets/icon.png')} style={styles.img} />
-          <Text style={styles.sakam}>SAKAM</Text>
+          <Text style={styles.sakam}>Sakam</Text>
         </View>
         <View style={styles.container}>
           <FlatList
@@ -96,11 +97,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
+    //fontSize:20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingHorizontal: width * 0.05,
     marginBottom: width * 0.02,
+    marginTop:height*0.015
   },
   img: {
     height: width * 0.06,
@@ -108,9 +111,10 @@ const styles = StyleSheet.create({
   },
   sakam: {
     color: theme.color.greenLighter,
-    fontSize: width * 0.035,
+    fontSize: width * 0.050,
     marginLeft: width * 0.035,
     fontWeight: 'bold',
+    
   },
 });
 
