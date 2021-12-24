@@ -1,20 +1,22 @@
-import { StyleSheet} from "react-native";
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    width: 160,
-    margin: 10,
+    width: 150,
+    marginHorizontal: 15,
+    marginVertical: 15,
   },
   image: {
     width: '100%',
-    height: 180,
-    borderRadius:5
+    height: 150,
+    borderRadius: 15,
   },
   text: {
+    textAlign: 'center',
     color: 'grey',
+    textTransform: 'capitalize',
     marginTop: 10,
-    marginHorizontal:5
-  }
-})
+  },
+});
 
 export default styles;
