@@ -1,7 +1,15 @@
-import React from 'react';
-import {View, Image, TouchableWithoutFeedback, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {
+  View,
+  Image,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import {Text} from 'react-native-design-utility';
+
+const {width} = Dimensions.get('screen');
 
 export type AlbumProps = {
   album: Album;
@@ -28,18 +36,18 @@ export default Artist_Home;
 
 const styles = StyleSheet.create({
   container: {
-    width: 150,
-    marginHorizontal: 15,
-    marginVertical: 15,
+    width: width * 0.35,
+    marginHorizontal: width * 0.035,
+    marginVertical: width * 0.035,
   },
   image: {
     width: '100%',
-    height: 150,
-    borderRadius: 150,
+    height: width * 0.35,
+    borderRadius: width * 0.35,
   },
   text: {
     textAlign: 'center',
-    color: 'grey',
+    color: '#AAA9A9',
     textTransform: 'capitalize',
     marginTop: 10,
   },

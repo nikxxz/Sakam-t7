@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, TouchableOpacity, Keyboard, Dimensions} from 'react-native';
+import {Image, TouchableOpacity, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Box, Text} from 'react-native-design-utility';
 import TrackPlayer from 'react-native-track-player';
@@ -17,16 +17,10 @@ const SearchModal11 = (props: any) => {
   const playerContext = usePlayerContext();
   const navigation = useNavigation();
 
-  // const onPlay = () => {
-  //   Keyboard.dismiss();
-  // };
-
   return (
     <Box h={90} dir="row" align="center" px="sm" pt={5}>
       <TouchableOpacity
         onPress={async () => {
-          //await TrackPlayer.reset()
-          //console.log(tracks)
           await TrackPlayer.add(tracks, 0);
           if (playerContext.isPlaying) {
             await TrackPlayer.skip(index - 1);
@@ -50,21 +44,20 @@ const SearchModal11 = (props: any) => {
           </Box>
           <Box f={3} height={width * 0.15} py={width * 0.02}>
             <Box f={1} width={width} ml={width * 0.175}>
+              <Text bold color="#E1BB80" size={width * 0.035} mt={width * 0.01}>
+                {song.title}
+              </Text>
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('ArtistScreen', {data: song})
                 }>
-                <Text size={width * 0.03} color={theme.color.greenLighter}>
+                <Text
+                  size={width * 0.03}
+                  color={theme.color.greenLighter}
+                  mt={width * 0.01}>
                   {song.artist}
                 </Text>
               </TouchableOpacity>
-              <Text
-                bold
-                color="#E1BB80"
-                size={width * 0.035}
-                mt={width * 0.005}>
-                {song.title}
-              </Text>
             </Box>
           </Box>
         </Box>

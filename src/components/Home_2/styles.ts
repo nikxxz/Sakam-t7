@@ -1,22 +1,13 @@
-import { StyleSheet } from "react-native";
+import {Dimensions, StyleSheet} from 'react-native';
+const {width} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
-  container: {
-    //margin: 10,
-    //backgroundColor:'yellow'
-  },
   title: {
     color: 'white',
-    fontSize: 24,
+    fontSize: width * 0.05,
     fontWeight: 'bold',
     margin: 10,
-    
   },
-  container_Sb_11:{
-   // width:'85%',
-   // backgroundColor:'orange',
-    //marginRight:-5
-  }
 });
 
 export default styles;

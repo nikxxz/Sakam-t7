@@ -1,3 +1,5 @@
-rootProject.name = 'sakam_trial_7'
+rootProject.name = 'Sakam'
+
+include ':react-native-google-signin', ':app'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'

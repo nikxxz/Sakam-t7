@@ -1,5 +1,12 @@
 import * as React from 'react';
-import {StyleSheet, FlatList, View} from 'react-native';
+import {
+  StyleSheet,
+  FlatList,
+  View,
+  Image,
+  Text,
+  Dimensions,
+} from 'react-native';
 import {useEffect, useState} from 'react';
 import Home_3 from '../components/Home_3';
 import Home_2 from '../components/Home_2';
@@ -7,6 +14,9 @@ import Home_1 from '../components/Home_1';
 import {supabase} from '../supabase/supabaseInit';
 import LoadingScreen from '../components/LoadingScreen';
 import LinearGradient from 'react-native-linear-gradient';
+import { theme } from '../constants/theme';
+
+const {width} = Dimensions.get('screen');
 
 const Home = () => {
   const [categories, setCategories] = useState(null);
@@ -24,12 +34,8 @@ const Home = () => {
         .from('HomePage')
         .select('*')
         .order('index', {ascending: true});
-      // console.log(data)
 
       if (data) {
-        // console.log(data);
-        //let rdm = Math.floor(Math.random() * data.length);
-        // console.log(data[rdm].homepage);
         setCategories(data);
         setLoading(false);
         setRefresh(false);
@@ -55,8 +61,12 @@ const Home = () => {
     <LinearGradient
       colors={['#212121', '#1D263B', '#212121']}
       start={{x: 0.3, y: 0.2}}>
-      <View style={styles.container}>
-        <View>
+      <View>
+        <View style={styles.header}>
+          <Image source={require('../../assets/icon.png')} style={styles.img} />
+          <Text style={styles.sakam}>SAKAM</Text>
+        </View>
+        <View style={styles.container}>
           <FlatList
             data={categories}
             renderItem={({item}) => {
@@ -84,6 +94,23 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingHorizontal: width * 0.05,
+    marginBottom: width * 0.02,
+  },
+  img: {
+    height: width * 0.06,
+    width: width * 0.06,
+  },
+  sakam: {
+    color: theme.color.greenLighter,
+    fontSize: width * 0.035,
+    marginLeft: width * 0.035,
+    fontWeight: 'bold',
   },
 });
 

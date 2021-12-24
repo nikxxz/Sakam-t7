@@ -1,4 +1,4 @@
-package com.sakam_trial_7;
+package com.Sakam;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "sakam_trial_7";
+    return "Sakam";
   }
 }
