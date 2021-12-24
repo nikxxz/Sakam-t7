@@ -44,21 +44,20 @@ const SearchModal11 = (props: any) => {
           </Box>
           <Box f={3} height={width * 0.15} py={width * 0.02}>
             <Box f={1} width={width} ml={width * 0.175}>
+              <Text bold color="#E1BB80" size={width * 0.035} mt={width * 0.01}>
+                {song.title}
+              </Text>
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('ArtistScreen', {data: song})
                 }>
-                <Text size={width * 0.03} color={theme.color.greenLighter}>
+                <Text
+                  size={width * 0.03}
+                  color={theme.color.greenLighter}
+                  mt={width * 0.01}>
                   {song.artist}
                 </Text>
               </TouchableOpacity>
-              <Text
-                bold
-                color="#E1BB80"
-                size={width * 0.035}
-                mt={width * 0.005}>
-                {song.title}
-              </Text>
             </Box>
           </Box>
         </Box>

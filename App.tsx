@@ -9,6 +9,13 @@ import 'react-native-url-polyfill/auto';
 import {StatusBar} from 'react-native';
 import {PlayerContextProvider} from './src/contexts/PlayerContext';
 import LoadingScreen from './src/components/LoadingScreen';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+
+GoogleSignin.configure({
+  webClientId:
+    '347522941225-4215pbarssvf7vlvqmhljug3ngdrhdgb.apps.googleusercontent.com',
+  offlineAccess: true,
+});
 
 const App = () => {
   const [isReady, setIsReady] = React.useState<boolean>(false);
@@ -16,7 +23,6 @@ const App = () => {
   React.useEffect(() => {
     TrackPlayer.setupPlayer()
       .then(() => {
-        //{minBuffer:2,playBuffer:1}
         setIsReady(true);
       })
       .catch(e => {

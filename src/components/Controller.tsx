@@ -22,7 +22,7 @@ export default function Controller({next, prev}) {
 
   return (
     <View style={styles.container}>
-      <Box pr={width * 0.025}>
+      <Box pr={width * 0.1}>
         <TouchableOpacity onPress={prev}>
           <IIcon
             name="ios-play-skip-back-outline"
@@ -53,7 +53,7 @@ export default function Controller({next, prev}) {
         )}
       </Box>
 
-      <Box>
+      <Box pl={width * 0.08}>
         <TouchableOpacity onPress={next}>
           <IIcon
             name="ios-play-skip-forward-outline"

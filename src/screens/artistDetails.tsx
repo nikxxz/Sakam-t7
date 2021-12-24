@@ -1,12 +1,6 @@
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {Dimensions, FlatList, Image, TouchableOpacity} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import {theme} from '../constants/theme';
 import {SearchStackParam, AlbumParam} from '../constants/types';
@@ -19,14 +13,16 @@ import LinearGradient from 'react-native-linear-gradient';
 type NavigationParams = RouteProp<SearchStackParam, 'Artist'>;
 type NavigationParama = RouteProp<AlbumParam, 'Artist'>;
 
-const {width} = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 
-const ArtistDetails = ({navigation}) => {
+const ArtistDetails = () => {
   const {data} = useRoute<NavigationParams>().params ?? {};
   const {song} = useRoute<NavigationParama>().params ?? {};
   const playerContext = usePlayerContext();
   const [asongs, setasongs] = useState();
   const [a, seta] = useState(data ? data.artist : song.artist);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getArtistSongs = async () => {
@@ -57,7 +53,12 @@ const ArtistDetails = ({navigation}) => {
     <LinearGradient
       colors={['#212121', '#1D263B', '#212121']}
       start={{x: 0.3, y: 0.2}}>
-      <Box>
+      <Box height={height}>
+        <Box pl={width * 0.03} pt={width * 0.05}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Icon name="arrow-left" size={width * 0.06} color="#fff" />
+          </TouchableOpacity>
+        </Box>
         <FlatList
           ListHeaderComponent={
             <>

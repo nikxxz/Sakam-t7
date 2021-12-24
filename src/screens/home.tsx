@@ -24,12 +24,8 @@ const Home = () => {
         .from('HomePage')
         .select('*')
         .order('index', {ascending: true});
-      // console.log(data)
 
       if (data) {
-        // console.log(data);
-        //let rdm = Math.floor(Math.random() * data.length);
-        // console.log(data[rdm].homepage);
         setCategories(data);
         setLoading(false);
         setRefresh(false);
