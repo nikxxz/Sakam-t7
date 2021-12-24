@@ -6,7 +6,6 @@ import {Box, Text} from 'react-native-design-utility';
 import {theme} from '../constants/theme';
 
 const SliderComp = ({event}) => {
-  // const [duration, setDuration] = useState(0);
   const [pos, setPos] = useState(0);
   const [sliding, setSliding] = useState(false);
   const {position, duration} = useProgress();
@@ -43,9 +42,9 @@ const SliderComp = ({event}) => {
         style={{width: '100%', height: 20}}
         minimumValue={0}
         maximumValue={duration}
-        minimumTrackTintColor="#D9CAB3"
-        maximumTrackTintColor={theme.color.greyLight}
-        thumbTintColor="#C6D57E"
+        minimumTrackTintColor={theme.color.greenLighter}
+        maximumTrackTintColor={theme.color.greenLighter}
+        thumbTintColor="#31E981"
         onSlidingStart={() => {
           setSliding(true);
         }}
@@ -58,8 +57,8 @@ const SliderComp = ({event}) => {
         value={sliding ? undefined : pos}
       />
       <Box dir="row" align="center" justify="between" px={15} py={5}>
-        <Text color="#CDF2CA">{time(position)}</Text>
-        <Text color="#CDF2CA">{time(duration)}</Text>
+        <Text color="#fff">{time(position)}</Text>
+        <Text color="#fff">{time(duration)}</Text>
       </Box>
     </>
   );

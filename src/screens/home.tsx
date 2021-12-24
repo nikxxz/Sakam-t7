@@ -6,6 +6,8 @@ import Home_2 from '../components/Home_2';
 import Home_1 from '../components/Home_1';
 import {supabase} from '../supabase/supabaseInit';
 import LoadingScreen from '../components/LoadingScreen';
+import LinearGradient from 'react-native-linear-gradient';
+
 const Home = () => {
   const [categories, setCategories] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -50,48 +52,38 @@ const Home = () => {
     return <LoadingScreen />;
   }
   return (
-    <View style={styles.container}>
-      <View>
-        <FlatList
-          data={categories}
-          renderItem={({item}) => {
-            if (item.type === 'Home_3') {
-              return <Home_3 title={item.title} songs={item.playlist} />;
-            }
-            if (item.type === 'Home_2') {
-              return <Home_2 title={item.title} albums={item.playlist} />;
-            }
-            if (item.type === 'Home_1') {
-              return <Home_1 title={item.title} albums={item.playlist} />;
-            }
-          }}
-          keyExtractor={item => item.id}
-          onRefresh={handleRefresh}
-          refreshing={loading}
-        />
+    <LinearGradient
+      colors={['#212121', '#1D263B', '#212121']}
+      start={{x: 0.3, y: 0.2}}>
+      <View style={styles.container}>
+        <View>
+          <FlatList
+            data={categories}
+            renderItem={({item}) => {
+              if (item.type === 'Home_3') {
+                return <Home_3 title={item.title} songs={item.playlist} />;
+              }
+              if (item.type === 'Home_2') {
+                return <Home_2 title={item.title} albums={item.playlist} />;
+              }
+              if (item.type === 'Home_1') {
+                return <Home_1 title={item.title} albums={item.playlist} />;
+              }
+            }}
+            keyExtractor={item => item.id}
+            onRefresh={handleRefresh}
+            refreshing={loading}
+          />
+        </View>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#212121',
-  },
-  container2: {
-    backgroundColor: 'red',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
   },
 });
 

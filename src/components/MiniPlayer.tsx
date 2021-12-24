@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Box, Text} from 'react-native-design-utility';
 import {usePlayerContext} from '../contexts/PlayerContext';
 import Icon from 'react-native-vector-icons/Feather';
-import {Image, TouchableOpacity} from 'react-native';
+import {ActivityIndicator, Image, TouchableOpacity} from 'react-native';
 import {theme} from '../constants/theme';
 import TrackPlayer from 'react-native-track-player';
 import {useNavigation} from '@react-navigation/native';
@@ -10,6 +10,7 @@ import {useNavigation} from '@react-navigation/native';
 const MiniPlayer = () => {
   const playerContext = usePlayerContext();
   const [artwor, setArtwork] = useState('');
+  const [play, setPlay] = useState(false);
   const navigation = useNavigation();
 
   const artwork = async () => {
@@ -23,8 +24,11 @@ const MiniPlayer = () => {
   }
 
   if (
-    playerContext.isEmpty ||
-    playerContext.isStopped
+    (playerContext.isEmpty ||
+      playerContext.isStopped ||
+      playerContext.isReady) &&
+    playerContext.isPlaying === false &&
+    playerContext.isPaused === false
   ) {
     console.log(playerContext.isEmpty)
     console.log(playerContext.isStopped)
@@ -34,7 +38,7 @@ const MiniPlayer = () => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('Player', {data: artwor});
+        navigation.navigate('Player');
       }}
       activeOpacity={1}>
       <Box h={75} bg="#000" px="sm">
@@ -57,21 +61,33 @@ const MiniPlayer = () => {
 
           <Box mr="sm">
             {playerContext.isPaused && (
-              <TouchableOpacity onPress={() => TrackPlayer.play()}>
+              <TouchableOpacity
+                onPress={() => {
+                  TrackPlayer.play();
+                  setPlay(true);
+                }}>
                 <Icon name="play" size={30} color={theme.color.greenLighter} />
               </TouchableOpacity>
             )}
 
             {playerContext.isPlaying && (
-              <TouchableOpacity onPress={() => TrackPlayer.pause()}>
+              <TouchableOpacity
+                onPress={() => {
+                  TrackPlayer.pause();
+                  setPlay(false);
+                }}>
                 <Icon name="pause" size={30} color={theme.color.greenLighter} />
               </TouchableOpacity>
             )}
 
-            {playerContext.isStopped && ( //|| playerContext.isEmpty
+            {playerContext.isStopped && (
               <TouchableOpacity onPress={() => {}}>
                 <Icon name="play" size={30} color={theme.color.greenLighter} />
               </TouchableOpacity>
+            )}
+
+            {(playerContext.isBuffering || playerContext.isConnecting) && (
+              <ActivityIndicator color="greenLighter" />
             )}
           </Box>
         </Box>

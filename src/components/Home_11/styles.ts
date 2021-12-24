@@ -1,20 +1,24 @@
-import { StyleSheet} from "react-native";
+import {Dimensions, StyleSheet} from 'react-native';
+
+const {width} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
   container: {
-    width: 160,
-    margin: 10,
+    width: width * 0.35,
+    marginHorizontal: width * 0.035,
+    marginVertical: width * 0.035,
   },
   image: {
     width: '100%',
-    height: 180,
-    borderRadius:5
+    height: width * 0.35,
+    borderRadius: 15,
   },
   text: {
-    color: 'grey',
+    textAlign: 'center',
+    color: '#AAA9A9',
+    textTransform: 'capitalize',
     marginTop: 10,
-    marginHorizontal:5
-  }
-})
+  },
+});
 
 export default styles;

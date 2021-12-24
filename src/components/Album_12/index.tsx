@@ -1,11 +1,12 @@
 import React from 'react';
-import {Image, TouchableOpacity} from 'react-native';
+import {Dimensions, Image, TouchableOpacity} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import TrackPlayer from 'react-native-track-player';
-import {theme} from '../../constants/theme';
 import {usePlayerContext} from '../../contexts/PlayerContext';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
+
+const {width} = Dimensions.get('screen');
 
 export type AlbumHeaderProps = {
   album: any;
@@ -13,12 +14,9 @@ export type AlbumHeaderProps = {
 
 const AlbumHeader = (props: any) => {
   const {album} = props;
-  const isPlaying = false;
-  //console.log(props);
   const playerContext = usePlayerContext();
 
   const onPlay = async () => {
-    // console.log('PLAY SONGS CLICKED');
     await TrackPlayer.add(props.tracks, 0);
     if (playerContext.isPlaying) {
       await TrackPlayer.skip(0);
@@ -29,11 +27,15 @@ const AlbumHeader = (props: any) => {
   };
 
   return (
-    <Box f={1} backgroundColor="#212121" pt={20} paddingHorizontal={12} mb={30}>
+    <Box f={1} pt={width * 0.05} mb={width * 0.075}>
       <Box>
-        <Box mr="sm" mt="xs">
-          <Text color="white" size="lg" center>{album.title}</Text>
-          <Text color="grey" size="sm" center>{album.by}</Text>
+        <Box>
+          <Text color="#E1BB80" size={width * 0.06} bold center>
+            {album.title}
+          </Text>
+          <Text color="grey" size="sm" center>
+            {album.by}
+          </Text>
         </Box>
 
         <Box alignItems="center" mx="sm">
@@ -46,39 +48,25 @@ const AlbumHeader = (props: any) => {
         </Box>
       </Box>
 
-      <Box f={1} dir="row" justify="evenly" py="md" px="xs">
+      <Box f={1} dir="row" justify="evenly" mt={40} px="xs">
         <TouchableOpacity onPress={onPlay}>
           <Box
-            backgroundColor={theme.color.greenLighter}
+            backgroundColor="#3EFF8B"
             radius={10}
-            py="xs"
-            px="sm"
-            width={120}
+            py={width * 0.015}
+            width={width * 0.3}
             alignItems="center">
-            <Text
-              color="white"
-              bold
-              style={{textTransform: 'uppercase'}}
-              size={15}>
-              Play
-            </Text>
+            <Icon name="play-outline" color="#1D263B" size={width * 0.06} />
           </Box>
         </TouchableOpacity>
         <TouchableOpacity onPress={onPlay}>
           <Box
-            backgroundColor={theme.color.greenLighter}
+            backgroundColor="#3EFF8B"
             radius={10}
-            py="xs"
-            px="sm"
-            width={120}
+            py={width * 0.015}
+            width={width * 0.3}
             alignItems="center">
-            <Text
-              color="white"
-              bold
-              style={{textTransform: 'uppercase'}}
-              size={15}>
-              Shuffle
-            </Text>
+            <Icon name="shuffle" color="#1D263B" size={width * 0.06} />
           </Box>
         </TouchableOpacity>
       </Box>

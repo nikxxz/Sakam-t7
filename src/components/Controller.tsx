@@ -1,67 +1,67 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import {Box} from 'react-native-design-utility';
 import TrackPlayer from 'react-native-track-player';
 import IIcon from 'react-native-vector-icons/Ionicons';
+import {usePlayerContext} from '../contexts/PlayerContext';
+
+const {width} = Dimensions.get('screen');
 
 export default function Controller({next, prev}) {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const {width} = Dimensions.get('screen');
+  const playerContext = usePlayerContext();
+
+  useEffect(() => {}, [playerContext]);
 
   const pause = async () => {
     await TrackPlayer.pause();
-    setIsPlaying(false);
   };
 
   const play = async () => {
     await TrackPlayer.play();
-    setIsPlaying(true);
   };
-
-  // const next = async () => {
-  //   await TrackPlayer.skipToNext();
-  // };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={prev}>
-        <IIcon
-          name="ios-play-skip-back-outline"
-          size={width * 0.085}
-          color="#C6D57E"
-        />
-      </TouchableOpacity>
-
-      {isPlaying ? (
-        // <Text color="white">Playing</Text>
-        <TouchableOpacity onPress={pause}>
+      <Box pr={width * 0.025}>
+        <TouchableOpacity onPress={prev}>
           <IIcon
-            name="ios-pause-circle-outline"
-            size={width * 0.25}
-            color="#C6D57E"
+            name="ios-play-skip-back-outline"
+            size={width * 0.1}
+            color="#3EFF8B"
           />
         </TouchableOpacity>
-      ) : (
-        //
-        <TouchableOpacity onPress={play}>
+      </Box>
+
+      <Box>
+        {playerContext.isPlaying ? (
+          <TouchableOpacity onPress={pause}>
+            <IIcon
+              name="ios-pause-circle-outline"
+              size={width * 0.3}
+              color="#31E981"
+            />
+          </TouchableOpacity>
+        ) : (
+          //
+          <TouchableOpacity onPress={play}>
+            <IIcon
+              name="ios-play-circle-outline"
+              size={width * 0.3}
+              color="#3EFF8B"
+            />
+          </TouchableOpacity>
+        )}
+      </Box>
+
+      <Box>
+        <TouchableOpacity onPress={next}>
           <IIcon
-            name="ios-play-circle-outline"
-            size={width * 0.25}
-            color="#C6D57E"
+            name="ios-play-skip-forward-outline"
+            size={width * 0.1}
+            color="#3EFF8B"
           />
         </TouchableOpacity>
-      )}
-
-      {/* <TouchableOpacity onPress={TrackPlayer.play()}>
-        <Icon name="pause-circle-outline" size={100} color={'#fff'} />
-      </TouchableOpacity> */}
-
-      <TouchableOpacity onPress={next}>
-        <IIcon
-          name="ios-play-skip-forward-outline"
-          size={width * 0.085}
-          color="#C6D57E"
-        />
-      </TouchableOpacity>
+      </Box>
     </View>
   );
 }
@@ -69,7 +69,7 @@ export default function Controller({next, prev}) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 });

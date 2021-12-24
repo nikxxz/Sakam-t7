@@ -7,9 +7,6 @@ import {supabase} from '../supabase/supabaseInit';
 import SearchModal1 from '../components/SearchModal1';
 
 const Search = () => {
-  // const playerContext = usePlayerContext();
-  // const [loading] = useState(false);
-  // const navigation = useNavigation();
   const [text, setText] = useState('');
   const [songs, setSongs] = useState(null);
 
@@ -19,18 +16,16 @@ const Search = () => {
 
   useEffect(() => {
     getSearchList2();
-  }, [text]);
+  }, [text, songs]);
 
   const getSearchList2 = async () => {
-    if(text === ''){
-      setSongs(null)
+    if (text === '') {
+      setSongs(null);
     }
     if (text !== '') {
       const {data, error} = await supabase.rpc('search_main', {
         p_pattern: text,
       });
-
-      // console.log('search data ', data);
 
       if (error) {
         console.log(error);
@@ -40,11 +35,6 @@ const Search = () => {
       }
     }
   };
-
-  useEffect(() => {
-    //TrackPlayer.reset()
-    //TrackPlayer.add(songs);
-  }, [songs]);
 
   // const artwork = async () => {
   //   const art = await TrackPlayer.getTrack(0);
@@ -65,14 +55,14 @@ const Search = () => {
           </Box>
           <TextInput
             style={styles.input}
-            placeholder="Search artists, songs"
+            placeholder="Search For Artists, Songs"
             placeholderTextColor={'grey'}
             selectionColor={theme.color.greenLighter}
             onChangeText={onChangeText}
           />
         </Box>
       </Box>
-      
+
       <SearchModal1 songs={songs} />
     </Box>
   );
