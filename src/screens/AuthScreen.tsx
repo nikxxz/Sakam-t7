@@ -6,7 +6,6 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {theme} from '../constants/theme';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {SharedElement} from 'react-navigation-shared-element';
 
 const AuthScreen = () => {
   const navigation = useNavigation();
@@ -35,17 +34,19 @@ const AuthScreen = () => {
     }
   };
 
+  if (authenticated === true) {
+    navigation.navigate('Tabs');
+  }
+
   return (
     <LinearGradient
       colors={['#212121', '#1D263B', '#212121']}
       start={{x: 0.3, y: 0.2}}
       style={styles.container}>
       <View style={styles.sakam}>
-        <SharedElement id="sakam">
-          <Animated.Text style={[styles.txt, {opacity: fade}]}>
-            SAKAM
-          </Animated.Text>
-        </SharedElement>
+        <Animated.Text style={[styles.txt, {opacity: fade}]}>
+          SAKAM
+        </Animated.Text>
       </View>
       <Animated.View style={[styles.btn, {opacity: fade}]}>
         <View style={styles.icon}>
@@ -55,15 +56,6 @@ const AuthScreen = () => {
           <Text style={styles.google}>Sign in with Google</Text>
         </TouchableOpacity>
       </Animated.View>
-      {/* <GoogleSigninButton
-        onPress={() => signIn()}
-        size={GoogleSigninButton.Size.Standard}
-        color={GoogleSigninButton.Color.Dark}
-        style={styles.btn}
-      /> */}
-      {/* <TouchableOpacity onPress={() => navigation.navigate('Tabs')}>
-        <Text style={styles.txt}>Skip</Text>
-      </TouchableOpacity> */}
     </LinearGradient>
   );
 };

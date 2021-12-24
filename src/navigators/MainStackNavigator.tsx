@@ -1,17 +1,17 @@
-import {TransitionScale} from '../constants/animations';
+import {Transition0} from '../constants/animations';
 import React from 'react';
 import Player from '../screens/Player';
 import PlayerStackScreen from './PlayerStack';
 import Tabs from './Tabs';
 import AuthScreen from '../screens/AuthScreen';
 import SplashScreen from '../screens/SplashScreen';
-import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createSharedElementStackNavigator();
+const Stack = createStackNavigator();
 
 const MainStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={TransitionScale}>
+    <Stack.Navigator screenOptions={Transition0}>
       <Stack.Screen
         name="Splash"
         component={SplashScreen}
@@ -21,9 +21,6 @@ const MainStackNavigator = () => {
         name="Auth"
         component={AuthScreen}
         options={{headerShown: false}}
-        sharedElements={() => {
-          return ['sakam'];
-        }}
       />
       <Stack.Screen
         name="Tabs"

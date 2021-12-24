@@ -1,9 +1,8 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef} from 'react';
-import {Animated, Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Animated, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {SharedElement} from 'react-navigation-shared-element';
 
 export default SplashScreen = () => {
   const fade = useRef(new Animated.Value(0)).current;
@@ -37,11 +36,9 @@ export default SplashScreen = () => {
       start={{x: 0.3, y: 0.2}}
       style={styles.container}>
       <Animated.View>
-        <SharedElement id="sakam">
-          <Animated.Text style={[styles.txt, {opacity: fade}]}>
-            SAKAM
-          </Animated.Text>
-        </SharedElement>
+        <Animated.Text style={[styles.txt, {opacity: fade}]}>
+          SAKAM
+        </Animated.Text>
       </Animated.View>
     </LinearGradient>
   );
