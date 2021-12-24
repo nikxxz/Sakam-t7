@@ -24,9 +24,11 @@ const MiniPlayer = () => {
 
   if (
     playerContext.isEmpty ||
-    playerContext.isStopped ||
-    playerContext.isReady
+    playerContext.isStopped
   ) {
+    console.log(playerContext.isEmpty)
+    console.log(playerContext.isStopped)
+    console.log(playerContext.isReady)
     return null;
   }
   return (

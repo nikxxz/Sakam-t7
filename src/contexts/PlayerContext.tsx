@@ -19,7 +19,7 @@ export const PlayerContext = React.createContext<PlayerContextType>({
   isPlaying: false,
   isPaused: false,
   isStopped: false,
-  isEmpty: true,
+  isEmpty: false,
   isReady: false,
   currentTrack: null,
   play: () => null,
