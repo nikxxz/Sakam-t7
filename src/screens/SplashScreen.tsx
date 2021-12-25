@@ -10,7 +10,7 @@ export default SplashScreen = () => {
 
   useEffect(() => {
     Animated.timing(fade, {
-      duration: 1000,
+      duration: 750,
       toValue: 1,
       delay: 0,
       useNativeDriver: false,
@@ -20,7 +20,7 @@ export default SplashScreen = () => {
   const isAuthenticated = async () => {
     const signedIn = await GoogleSignin.isSignedIn();
     if (signedIn === true) {
-      navigation.navigate('Tabs');
+      navigation.navigate('Main');
     } else {
       navigation.navigate('Auth');
     }
@@ -36,9 +36,9 @@ export default SplashScreen = () => {
     getUserDetails();
   }, []);
 
-  // setTimeout(() => {
-  //   isAuthenticated();
-  // }, 2500);
+  setTimeout(() => {
+    isAuthenticated();
+  }, 1000);
 
   return (
     <LinearGradient

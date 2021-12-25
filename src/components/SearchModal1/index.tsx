@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   list: {
-    marginBottom: 30,
+    marginBottom: 80,
     marginHorizontal: 5,
   },
 });

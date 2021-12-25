@@ -2,23 +2,16 @@ import {
   createBottomTabNavigator,
   BottomTabBar,
 } from '@react-navigation/bottom-tabs';
-import React, {useEffect} from 'react';
+import React from 'react';
 import AlbumScreen from '../screens/AlbumScreen';
 import MiniPlayer from '../components/MiniPlayer';
 import {theme} from '../constants/theme';
 import ArtistDetails from '../screens/artistDetails';
-import EditProfile from '../screens/EditProfile';
-import Help from '../screens/Help';
 import Home from '../screens/home';
-import Profile from '../screens/profile';
 import Search from '../screens/search';
-import Library from '../screens/library';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Playlist from '../screens/Playlist';
 import {TransitionSlide} from '../constants/animations';
-
 import {createStackNavigator} from '@react-navigation/stack';
-import {Alert, BackHandler} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -107,26 +100,6 @@ const SearchStackNavigator = () => {
 };
 
 const Tabs = () => {
-  useEffect(() => {
-    const backPress = () => {
-      Alert.alert('Sakam', 'Are you sure you want to exit?', [
-        {
-          text: 'No',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {text: 'Yes', onPress: () => BackHandler.exitApp()},
-      ]);
-      return true;
-    };
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backPress,
-    );
-
-    return () => backHandler.remove();
-  }, []);
-
   return (
     <Tab.Navigator
       tabBar={tabProps => (

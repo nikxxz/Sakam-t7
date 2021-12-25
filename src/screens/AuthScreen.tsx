@@ -1,7 +1,15 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef} from 'react';
-import {Animated, Dimensions, Image, StyleSheet, View} from 'react-native';
+import {
+  Alert,
+  Animated,
+  BackHandler,
+  Dimensions,
+  Image,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {theme} from '../constants/theme';
@@ -24,6 +32,24 @@ const AuthScreen = () => {
       delay: 500,
       useNativeDriver: false,
     }).start();
+
+    const backPress = () => {
+      Alert.alert('Sakam', 'Are you sure you want to exit?', [
+        {
+          text: 'No',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'Yes', onPress: () => BackHandler.exitApp()},
+      ]);
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backPress,
+    );
+
+    return () => backHandler.remove();
   }, [fade]);
 
   const signIn = async () => {
@@ -49,7 +75,7 @@ const AuthScreen = () => {
   };
 
   if (authenticated === true) {
-    navigation.navigate('Tabs');
+    navigation.navigate('Main');
   }
 
   return (

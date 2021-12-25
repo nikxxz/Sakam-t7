@@ -7,7 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
 
-const {width} = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 
 export type AlbumCategoryProps = {
   album: any;
@@ -25,7 +25,7 @@ const Album_1 = (props: AlbumCategoryProps) => {
           <Icon name="arrow-left" size={width * 0.06} color="#fff" />
         </TouchableOpacity>
       </Box>
-      <Box pt={10}>
+      <Box pt={10} mb={height * 0.175}>
         <FlatList
           data={props.album.songs}
           renderItem={({item, index}) => (

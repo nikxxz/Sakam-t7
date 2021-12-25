@@ -3,13 +3,13 @@ import React from 'react';
 import {Box, UtilityThemeProvider} from 'react-native-design-utility';
 import {theme} from './src/constants/theme';
 import {NavigationContainer} from '@react-navigation/native';
-import MainStackNavigator from './src/navigators/MainStackNavigator';
 import TrackPlayer, {Capability} from 'react-native-track-player';
 import 'react-native-url-polyfill/auto';
 import {StatusBar} from 'react-native';
 import {PlayerContextProvider} from './src/contexts/PlayerContext';
 import LoadingScreen from './src/components/LoadingScreen';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import AuthStack from './src/navigators/AuthStack';
 
 GoogleSignin.configure({
   webClientId:
@@ -62,7 +62,7 @@ const App = () => {
       {isReady ? (
         <PlayerContextProvider>
           <NavigationContainer theme={{colors: {background: '#212121'}}}>
-            <MainStackNavigator />
+            <AuthStack />
           </NavigationContainer>
           <StatusBar barStyle={'light-content'} backgroundColor={'#212121'} />
         </PlayerContextProvider>

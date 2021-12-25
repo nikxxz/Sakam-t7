@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {StyleSheet, FlatList, View, Image, Dimensions} from 'react-native';
-import {Box, Text} from 'react-native-design-utility';
+import {Text} from 'react-native-design-utility';
 import {useEffect, useState} from 'react';
 import Home_3 from '../components/Home_3';
 import Home_2 from '../components/Home_2';
