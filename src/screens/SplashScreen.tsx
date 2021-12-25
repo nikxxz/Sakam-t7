@@ -26,15 +26,15 @@ export default SplashScreen = () => {
     }
   };
 
-  const getUserDetails = async() =>{
+  const getUserDetails = async () => {
     const currentUser = await GoogleSignin.getCurrentUser();
-    console.log(currentUser);
-  }
+    // console.log(currentUser);
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     isAuthenticated();
     getUserDetails();
-  },[])
+  }, []);
 
   // setTimeout(() => {
   //   isAuthenticated();

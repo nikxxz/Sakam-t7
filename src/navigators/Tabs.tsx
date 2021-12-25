@@ -2,7 +2,7 @@ import {
   createBottomTabNavigator,
   BottomTabBar,
 } from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, {useEffect} from 'react';
 import AlbumScreen from '../screens/AlbumScreen';
 import MiniPlayer from '../components/MiniPlayer';
 import {theme} from '../constants/theme';
@@ -18,6 +18,7 @@ import Playlist from '../screens/Playlist';
 import {TransitionSlide} from '../constants/animations';
 
 import {createStackNavigator} from '@react-navigation/stack';
+import {Alert, BackHandler} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -45,41 +46,41 @@ const NowPlayingStackNavigator = () => {
   );
 };
 
-const LibraryStack = createStackNavigator();
+// const LibraryStack = createStackNavigator();
 
-const LibraryStackNavigator = () => {
-  return (
-    <LibraryStack.Navigator
-      screenOptions={TransitionSlide}
-      initialRouteName="ProfileScreen">
-      <LibraryStack.Screen
-        name="ProfileScreen"
-        component={Profile}
-        options={{headerShown: false}}
-      />
-      <LibraryStack.Screen
-        name="EditProfile"
-        component={EditProfile}
-        options={{headerShown: false}}
-      />
-      <LibraryStack.Screen
-        name="Library"
-        component={Library}
-        options={{headerShown: false}}
-      />
-      <LibraryStack.Screen
-        name="Help"
-        component={Help}
-        options={{headerShown: false}}
-      />
-      <LibraryStack.Screen
-        name="Playlist"
-        component={Playlist}
-        options={{headerShown: false}}
-      />
-    </LibraryStack.Navigator>
-  );
-};
+// const LibraryStackNavigator = () => {
+//   return (
+//     <LibraryStack.Navigator
+//       screenOptions={TransitionSlide}
+//       initialRouteName="ProfileScreen">
+//       <LibraryStack.Screen
+//         name="ProfileScreen"
+//         component={Profile}
+//         options={{headerShown: false}}
+//       />
+//       <LibraryStack.Screen
+//         name="EditProfile"
+//         component={EditProfile}
+//         options={{headerShown: false}}
+//       />
+//       <LibraryStack.Screen
+//         name="Library"
+//         component={Library}
+//         options={{headerShown: false}}
+//       />
+//       <LibraryStack.Screen
+//         name="Help"
+//         component={Help}
+//         options={{headerShown: false}}
+//       />
+//       <LibraryStack.Screen
+//         name="Playlist"
+//         component={Playlist}
+//         options={{headerShown: false}}
+//       />
+//     </LibraryStack.Navigator>
+//   );
+// };
 
 const SearchStack = createStackNavigator();
 
@@ -106,6 +107,26 @@ const SearchStackNavigator = () => {
 };
 
 const Tabs = () => {
+  useEffect(() => {
+    const backPress = () => {
+      Alert.alert('Sakam', 'Are you sure you want to exit?', [
+        {
+          text: 'No',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'Yes', onPress: () => BackHandler.exitApp()},
+      ]);
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backPress,
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   return (
     <Tab.Navigator
       tabBar={tabProps => (
@@ -129,7 +150,7 @@ const Tabs = () => {
           backgroundColor: 'black',
           borderTopWidth: 0,
           paddingTop: 10,
-          opacity:0.8
+          opacity: 0.8,
         },
       }}>
       <Tab.Screen

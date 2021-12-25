@@ -1,12 +1,5 @@
 import * as React from 'react';
-import {
-  StyleSheet,
-  FlatList,
-  View,
-  Image,
-  
-  Dimensions,
-} from 'react-native';
+import {StyleSheet, FlatList, View, Image, Dimensions} from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import {useEffect, useState} from 'react';
 import Home_3 from '../components/Home_3';
@@ -15,9 +8,9 @@ import Home_1 from '../components/Home_1';
 import {supabase} from '../supabase/supabaseInit';
 import LoadingScreen from '../components/LoadingScreen';
 import LinearGradient from 'react-native-linear-gradient';
-import { theme } from '../constants/theme';
+import {theme} from '../constants/theme';
 
-const {height,width} = Dimensions.get('screen');
+const {height, width} = Dimensions.get('screen');
 
 const Home = () => {
   const [categories, setCategories] = useState(null);
@@ -103,7 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingHorizontal: width * 0.05,
     marginBottom: width * 0.02,
-    marginTop:height*0.015
+    marginTop: height * 0.015,
   },
   img: {
     height: width * 0.06,
@@ -111,10 +104,9 @@ const styles = StyleSheet.create({
   },
   sakam: {
     color: theme.color.greenLighter,
-    fontSize: width * 0.050,
+    fontSize: width * 0.05,
     marginLeft: width * 0.035,
     fontWeight: 'bold',
-    
   },
 });
 

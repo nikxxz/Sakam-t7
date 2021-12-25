@@ -1,15 +1,15 @@
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef} from 'react';
-import {Animated, Dimensions, Image, StyleSheet,  View} from 'react-native';
+import {Animated, Dimensions, Image, StyleSheet, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {theme} from '../constants/theme';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { supabase } from '../supabase/supabaseInit';
-import { Text } from 'react-native-design-utility';
+import {supabase} from '../supabase/supabaseInit';
+import {Text} from 'react-native-design-utility';
 
-const {height,width} = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 
 const AuthScreen = () => {
   const navigation = useNavigation();
@@ -32,18 +32,15 @@ const AuthScreen = () => {
       const userInfo = await GoogleSignin.signIn();
       setUser(userInfo);
       // console.log(user.user);
-      
-    const { data, error } = await supabase
-    .from('Users')
-    .insert([
-      { 
-        first_name: userInfo.user.givenName, 
-        last_name: userInfo.user.familyName,
-        email:userInfo.user.email,
-        profile_photo:userInfo.user.photo
-    
-      },
-    ])
+
+      const {data, error} = await supabase.from('Users').insert([
+        {
+          first_name: userInfo.user.givenName,
+          last_name: userInfo.user.familyName,
+          email: userInfo.user.email,
+          profile_photo: userInfo.user.photo,
+        },
+      ]);
 
       setAuthenticated(true);
     } catch (e) {
@@ -61,8 +58,8 @@ const AuthScreen = () => {
       start={{x: 0.3, y: 0.2}}
       style={styles.container}>
       <View style={styles.sakam}>
-      <Image source={require('../../assets/icon.png')} style={styles.img} />
-        <Animated.Text style={[styles.txt, {opacity: fade}]}>       
+        <Image source={require('../../assets/icon.png')} style={styles.img} />
+        <Animated.Text style={[styles.txt, {opacity: fade}]}>
           Sakam
         </Animated.Text>
       </View>
@@ -87,25 +84,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   txt: {
-    fontSize: 68,
+    fontSize: width * 0.16,
     color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: '700',
     letterSpacing: 0.5,
+    marginLeft: width * 0.035,
   },
   google: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: width * 0.05,
     //textTransform: 'uppercase',
     fontWeight: '700',
   },
   sakam: {
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection:'row'
+    flexDirection: 'row',
   },
   img: {
-    height: width * 0.13,
-    width: width * 0.12,
+    height: width * 0.15,
+    width: width * 0.15,
   },
   btn: {
     alignItems: 'center',
