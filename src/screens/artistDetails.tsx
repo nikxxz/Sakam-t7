@@ -20,6 +20,7 @@ const ArtistDetails = () => {
   const {song} = useRoute<NavigationParama>().params ?? {};
   const playerContext = usePlayerContext();
   const [asongs, setasongs] = useState();
+  const [miniPlayer, setMiniPlayer] = useState<boolean>(false);
   const [a, seta] = useState(data ? data.artist : song.artist);
 
   const navigation = useNavigation();
@@ -44,16 +45,20 @@ const ArtistDetails = () => {
       } catch (e) {
         console.log(e);
       }
+
+      if (playerContext.isPlaying === true || playerContext.isPaused === true) {
+        setMiniPlayer(true);
+      }
     };
 
     getArtistSongs();
-  }, []);
+  }, [miniPlayer]);
 
   return (
     <LinearGradient
       colors={['#212121', '#1D263B', '#212121']}
       start={{x: 0.3, y: 0.2}}>
-      <Box height={height}>
+      <Box height={height} paddingBottom={miniPlayer ? height * 0.18 : 20}>
         <Box pl={width * 0.03} pt={width * 0.05}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="arrow-left" size={width * 0.06} color="#fff" />
