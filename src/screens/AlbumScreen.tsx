@@ -12,10 +12,7 @@ const AlbumScreen = () => {
 
   useEffect(() => {
     const getd = async () => {
-      let {data, error} = await supabase
-        .from('Playlist1')
-        .select('*')
-        .eq('id', albumId);
+      const {data, error} = await supabase.rpc('get_playlist', {playlist_id:albumId});
 
       if (error) {
         console.log(error);

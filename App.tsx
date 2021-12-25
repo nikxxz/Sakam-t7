@@ -10,6 +10,9 @@ import {PlayerContextProvider} from './src/contexts/PlayerContext';
 import LoadingScreen from './src/components/LoadingScreen';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import AuthStack from './src/navigators/AuthStack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { supabase } from './src/supabase/supabaseInit';
+import moment from 'moment';
 
 GoogleSignin.configure({
   webClientId:
@@ -28,7 +31,23 @@ const App = () => {
       .catch(e => {
         console.log(e);
       });
+
+     
+       
   }, []);
+
+
+  const _getUser = async () => {
+    try {
+      const user = await AsyncStorage.getItem(
+        'user'
+      );
+      console.log(user)
+      return user;
+    } catch (error) {
+      // Error saving data
+    }
+  };
 
   TrackPlayer.updateOptions({
     stopWithApp: true,
@@ -61,7 +80,7 @@ const App = () => {
     <UtilityThemeProvider theme={theme}>
       {isReady ? (
         <PlayerContextProvider>
-          <NavigationContainer theme={{colors: {background: '#212121'}}}>
+          <NavigationContainer theme={{colors:{background: '#212121'}}}>
             <AuthStack />
           </NavigationContainer>
           <StatusBar barStyle={'light-content'} backgroundColor={'#212121'} />

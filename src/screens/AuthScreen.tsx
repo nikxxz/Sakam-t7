@@ -4,6 +4,7 @@ import React, {useEffect, useRef} from 'react';
 import {
   Alert,
   Animated,
+  
   BackHandler,
   Dimensions,
   Image,
@@ -16,6 +17,7 @@ import {theme} from '../constants/theme';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {supabase} from '../supabase/supabaseInit';
 import {Text} from 'react-native-design-utility';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width} = Dimensions.get('screen');
 
@@ -24,6 +26,10 @@ const AuthScreen = () => {
   const [user, setUser] = React.useState<Object>({});
   const [authenticated, setAuthenticated] = React.useState<boolean>(false);
   const fade = useRef(new Animated.Value(0)).current;
+
+  // useEffect(()=>{
+  //   cap_session
+  // },[authenticated])
 
   useEffect(() => {
     Animated.timing(fade, {
@@ -52,6 +58,17 @@ const AuthScreen = () => {
     return () => backHandler.remove();
   }, [fade]);
 
+  const _storeData = async (data: any) => {
+    try {
+      await AsyncStorage.setItem(
+        'user',
+         data
+      );
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
   const signIn = async () => {
     try {
       await GoogleSignin.hasPlayServices();
@@ -67,6 +84,10 @@ const AuthScreen = () => {
           profile_photo: userInfo.user.photo,
         },
       ]);
+
+      
+
+      _storeData(data[0].id)
 
       setAuthenticated(true);
     } catch (e) {

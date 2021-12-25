@@ -24,12 +24,8 @@ const Home = () => {
 
   const fetchAlbumCategories = async () => {
     try {
-      let {data, error} = await supabase
-        .from('HomePage')
-        .select('*')
-        .order('index', {ascending: true});
-
-      if (data) {
+      const {data, error} = await supabase.rpc('get_home');
+      if (data) {        
         setCategories(data);
         setLoading(false);
         setRefresh(false);

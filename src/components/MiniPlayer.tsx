@@ -23,6 +23,7 @@ const MiniPlayer = () => {
     artwork();
   }
 
+
   if (
     (playerContext.isEmpty ||
       playerContext.isStopped ||
